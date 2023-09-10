@@ -1,3 +1,5 @@
+import Footer from '../footer/footer';
+
 function Catatog(): JSX.Element {
   return (
     <div className="page-content">
@@ -358,6 +360,7 @@ function Catatog(): JSX.Element {
           </button>
         </div>
       </section>
+      <Footer />
     </div>
   );
 }

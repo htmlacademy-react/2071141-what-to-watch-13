@@ -1,7 +1,7 @@
 export enum NameSpace {
   User = 'USER',
-  film = 'OFFER',
-  films = 'OFFERS',
+  Film = 'OFFER',
+  Films = 'OFFERS',
   MyList = 'MYLIST',
   Review = 'REVIEW',
 }
@@ -9,10 +9,10 @@ export enum NameSpace {
 export enum AppRoute {
   Root = '/',
   Login = '/login',
-  Film = '/film',
-  Films = '/films',
   MyList = '/mylist',
-  Review = '/review',
+  Film = '/films/:id',
+  AddReview = 'films/:id/review',
+  Player = '/player/:id',
 }
 
 export enum AuthorizationStatus {
