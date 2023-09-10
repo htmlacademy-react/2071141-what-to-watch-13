@@ -10,10 +10,9 @@ function App(): JSX.Element {
     <HelmetProvider>
       <BrowserRouter>
         <Routes>
-          <Route path={AppRoute.Root} element={<Layout />} />
-          <Route index element={<Main />} />
-          <Route path={AppRoute.Film} element={<Main />} />
-
+          <Route path={AppRoute.Root} element={<Layout />}>
+            <Route index element={<Main />} />
+          </Route>
           <Route path="*" element={<PageNotFound />} />
         </Routes>
       </BrowserRouter>
