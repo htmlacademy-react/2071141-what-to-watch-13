@@ -1,6 +1,6 @@
 function FilmCard(): JSX.Element {
   return (
-    <section className="film-card">
+    <>
       <div className="film-card__bg">
         <img
           src="img/bg-the-grand-budapest-hotel.jpg"
@@ -43,7 +43,7 @@ function FilmCard(): JSX.Element {
           </div>
         </div>
       </div>
-    </section>
+    </>
   );
 }
 
