@@ -1,6 +1,6 @@
 import Header from '../header/header';
 
-function FilmCard(): JSX.Element {
+function FilmCardMain(): JSX.Element {
   return (
     <section className="film-card">
       <div className="film-card__bg">
@@ -51,4 +51,4 @@ function FilmCard(): JSX.Element {
   );
 }
 
-export default FilmCard;
+export default FilmCardMain;

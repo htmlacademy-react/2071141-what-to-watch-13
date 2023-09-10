@@ -1,4 +1,3 @@
-import Header from '../../components/header/header';
 import Logo from '../../components/logo/logo';
 import UserInfo from '../../components/user-info/user-info';
 

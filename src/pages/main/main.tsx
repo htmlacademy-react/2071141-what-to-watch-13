@@ -1,11 +1,14 @@
 import Catatog from '../../components/catalog/catalog';
-import FilmCard from '../../components/film-card/film-card';
+import FilmCardMain from '../../components/film-card-main/film-card-main';
 
-function Main(): JSX.Element {
+type TMainProps = {
+  filmsCount: number;
+};
+function Main({ filmsCount }: TMainProps): JSX.Element {
   return (
     <>
-      <FilmCard />
-      <Catatog />
+      <FilmCardMain />
+      <Catatog filmsCount={filmsCount} />
     </>
   );
 }
