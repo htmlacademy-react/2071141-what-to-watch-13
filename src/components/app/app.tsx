@@ -11,7 +11,7 @@ import Player from '../../pages/player/player';
 import PrivateRoute from '../private-route/private-route';
 
 function App(): JSX.Element {
-  const FILMS_COUNT = 40;
+  const FILMS_COUNT = 8;
 
   return (
     <HelmetProvider>
@@ -21,10 +21,7 @@ function App(): JSX.Element {
             path={AppRoute.Root}
             element={<Main filmsCount={FILMS_COUNT} />}
           />
-          <Route
-            path={AppRoute.Film}
-            element={<Film filmsCount={FILMS_COUNT} />}
-          />
+          <Route path={AppRoute.Film} element={<Film />} />
           <Route path={AppRoute.Login} element={<Login />} />
           <Route
             path={AppRoute.MyList}
