@@ -1,10 +1,10 @@
 import { TFilms } from '../../types/films';
 import FilmCardSmall from '../film-card-small/film-card-small';
 
-type TFilmCardListProps = {
+type TFilmCardsListProps = {
   films: TFilms[];
 };
-function FilmCardList({ films }: TFilmCardListProps): JSX.Element {
+function FilmCardsList({ films }: TFilmCardsListProps): JSX.Element {
   return (
     <div className="catalog__films-list">
       {films.map((film) => (
@@ -14,4 +14,4 @@ function FilmCardList({ films }: TFilmCardListProps): JSX.Element {
   );
 }
 
-export default FilmCardList;
+export default FilmCardsList;

@@ -13,8 +13,8 @@ import { TFilms } from '../../types/films';
 import { TFilm } from '../../types/film';
 
 type TAppProps = {
-  films: TFilms[];
   film: TFilm;
+  films: TFilms[];
 };
 
 function App({ film, films }: TAppProps): JSX.Element {
@@ -23,7 +23,10 @@ function App({ film, films }: TAppProps): JSX.Element {
       <BrowserRouter>
         <Routes>
           <Route path={AppRoute.Root} element={<Main films={films} />} />
-          <Route path={AppRoute.Film} element={<Film film={film} />} />
+          <Route
+            path={AppRoute.Film}
+            element={<Film film={film} films={films} />}
+          />
           <Route path={AppRoute.Login} element={<Login />} />
           <Route
             path={AppRoute.MyList}
