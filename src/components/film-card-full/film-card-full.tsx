@@ -1,41 +1,75 @@
+import { Link } from 'react-router-dom';
+import { TFilm } from '../../types/film';
 import Header from '../header/header';
+import { AppRoute } from '../../const';
+import { Fragment } from 'react';
+import { getTimeFromMins } from '../../utils/utils';
 
-function FilmCardFull() {
+type TFimCardFull = { film: TFilm };
+function FilmCardFull({ film }: TFimCardFull): JSX.Element {
+  const {
+    name,
+    posterImage,
+    previewImage,
+    previewVideoLink,
+    backgroundColor,
+    backgroundImage,
+    videoLink,
+    description,
+    rating,
+    scoresCount,
+    director,
+    starring,
+    runTime,
+    genre,
+    released,
+    isFavorite,
+  } = film;
   return (
     <section className="film-card film-card--full">
       <div className="film-card__hero">
         <div className="film-card__bg">
-          <img
-            src="img/bg-the-grand-budapest-hotel.jpg"
-            alt="The Grand Budapest Hotel"
-          />
+          <img src={backgroundImage} alt={name} />
         </div>
         <h1 className="visually-hidden">WTW</h1>
         <Header />
         <div className="film-card__wrap">
           <div className="film-card__desc">
-            <h2 className="film-card__title">The Grand Budapest Hotel</h2>
+            <h2 className="film-card__title">{name}</h2>
             <p className="film-card__meta">
-              <span className="film-card__genre">Drama</span>
-              <span className="film-card__year">2014</span>
+              <span className="film-card__genre">{genre}</span>
+              <span className="film-card__year">{released}</span>
             </p>
             <div className="film-card__buttons">
-              <button className="btn btn--play film-card__button" type="button">
+              <Link
+                to={AppRoute.Player}
+                className="btn btn--play film-card__button"
+                type="button"
+              >
                 <svg viewBox="0 0 19 19" width={19} height={19}>
                   <use xlinkHref="#play-s" />
                 </svg>
                 <span>Play</span>
-              </button>
-              <button className="btn btn--list film-card__button" type="button">
+              </Link>
+
+              <Link
+                to={AppRoute.MyList}
+                className="btn btn--list film-card__button"
+                type="button"
+              >
                 <svg viewBox="0 0 19 20" width={19} height={20}>
-                  <use xlinkHref="#add" />
+                  {isFavorite ? (
+                    <use xlinkHref="#in-list" />
+                  ) : (
+                    <use xlinkHref="#add" />
+                  )}
                 </svg>
                 <span>My list</span>
                 <span className="film-card__count">9</span>
-              </button>
-              <a href="add-review.html" className="btn film-card__button">
+              </Link>
+              <Link to={'review'} className="btn film-card__button">
                 Add review
-              </a>
+              </Link>
             </div>
           </div>
         </div>
@@ -43,12 +77,7 @@ function FilmCardFull() {
       <div className="film-card__wrap film-card__translate-top">
         <div className="film-card__info">
           <div className="film-card__poster film-card__poster--big">
-            <img
-              src="img/the-grand-budapest-hotel-poster.jpg"
-              alt="The Grand Budapest Hotel poster"
-              width={218}
-              height={327}
-            />
+            <img src={posterImage} alt={name} width={218} height={327} />
           </div>
           <div className="film-card__desc">
             <nav className="film-nav film-card__nav">
@@ -74,38 +103,33 @@ function FilmCardFull() {
               <div className="film-card__text-col">
                 <p className="film-card__details-item">
                   <strong className="film-card__details-name">Director</strong>
-                  <span className="film-card__details-value">Wes Anderson</span>
+                  <span className="film-card__details-value">{director}</span>
                 </p>
                 <p className="film-card__details-item">
                   <strong className="film-card__details-name">Starring</strong>
                   <span className="film-card__details-value">
-                    Bill Murray, <br />
-                    Edward Norton, <br />
-                    Jude Law, <br />
-                    Willem Dafoe, <br />
-                    Saoirse Ronan, <br />
-                    Tony Revoloru, <br />
-                    Tilda Swinton, <br />
-                    Tom Wilkinson, <br />
-                    Owen Wilkinson, <br />
-                    Adrien Brody, <br />
-                    Ralph Fiennes, <br />
-                    Jeff Goldblum
+                    {starring.map((actor) => (
+                      <Fragment key={actor}>
+                        {actor} <br />
+                      </Fragment>
+                    ))}
                   </span>
                 </p>
               </div>
               <div className="film-card__text-col">
                 <p className="film-card__details-item">
                   <strong className="film-card__details-name">Run Time</strong>
-                  <span className="film-card__details-value">1h 39m</span>
+                  <span className="film-card__details-value">
+                    {getTimeFromMins(runTime)}
+                  </span>
                 </p>
                 <p className="film-card__details-item">
                   <strong className="film-card__details-name">Genre</strong>
-                  <span className="film-card__details-value">Comedy</span>
+                  <span className="film-card__details-value">{genre}</span>
                 </p>
                 <p className="film-card__details-item">
                   <strong className="film-card__details-name">Released</strong>
-                  <span className="film-card__details-value">2014</span>
+                  <span className="film-card__details-value">{released}</span>
                 </p>
               </div>
             </div>

@@ -37,3 +37,20 @@ export enum RequestStatus {
   Error = 'Error',
   Rejected = 'Rejected',
 }
+
+export const ratingMap = {
+  '10': 'awesome',
+  '9': 'very good',
+  '8': 'very good',
+  '7': 'good',
+  '6': 'good',
+  '5': 'good',
+  '4': 'normal',
+  '3': 'normal',
+  '2': 'bad',
+  '1': 'bad',
+};
+
+export const MIN_COMMENT_LENGTH = 5; //потом исправить на 50!!!
+
+export const MAX_COMMENT_LENGTH = 400;

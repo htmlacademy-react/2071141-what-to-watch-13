@@ -2,7 +2,9 @@ export type TFilm = {
   id: string;
   name: string;
   posterImage: string;
-  backgroundImage: URL;
+  previewImage: string;
+  previewVideoLink: string;
+  backgroundImage: string;
   backgroundColor: string;
   videoLink: string;
   description: string;
@@ -13,5 +15,5 @@ export type TFilm = {
   runTime: number;
   genre: string;
   released: number;
-  isFavorite: false;
+  isFavorite: boolean;
 };

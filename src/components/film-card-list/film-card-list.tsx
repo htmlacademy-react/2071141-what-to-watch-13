@@ -1,13 +1,14 @@
+import { TFilms } from '../../types/films';
 import FilmCardSmall from '../film-card-small/film-card-small';
 
 type TFilmCardListProps = {
-  filmsCount: number;
+  films: TFilms[];
 };
-function FilmCardList({ filmsCount }: TFilmCardListProps): JSX.Element {
+function FilmCardList({ films }: TFilmCardListProps): JSX.Element {
   return (
     <div className="catalog__films-list">
-      {Array.from({ length: filmsCount }).map((_, index) => (
-        <FilmCardSmall key={index} />
+      {films.map((film) => (
+        <FilmCardSmall film={film} key={film.id} />
       ))}
     </div>
   );

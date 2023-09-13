@@ -1,10 +1,11 @@
+import { TFilms } from '../../types/films';
 import FilmCardList from '../film-card-list/film-card-list';
 import Footer from '../footer/footer';
 
 type TCatalogProps = {
-  filmsCount: number;
+  films: TFilms[];
 };
-function Catatog({ filmsCount }: TCatalogProps): JSX.Element {
+function Catatog({ films }: TCatalogProps): JSX.Element {
   return (
     <div className="page-content">
       <section className="catalog">
@@ -61,7 +62,7 @@ function Catatog({ filmsCount }: TCatalogProps): JSX.Element {
             </a>
           </li>
         </ul>
-        <FilmCardList filmsCount={filmsCount} />
+        <FilmCardList films={films} />
         <div className="catalog__more">
           <button className="catalog__button" type="button">
             Show more

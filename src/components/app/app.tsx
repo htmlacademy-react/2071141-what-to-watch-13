@@ -9,25 +9,27 @@ import Login from '../../pages/login/login';
 import MyList from '../../pages/my-list/my-list';
 import Player from '../../pages/player/player';
 import PrivateRoute from '../private-route/private-route';
+import { TFilms } from '../../types/films';
+import { TFilm } from '../../types/film';
 
-function App(): JSX.Element {
-  const FILMS_COUNT = 8;
+type TAppProps = {
+  films: TFilms[];
+  film: TFilm;
+};
 
+function App({ film, films }: TAppProps): JSX.Element {
   return (
     <HelmetProvider>
       <BrowserRouter>
         <Routes>
-          <Route
-            path={AppRoute.Root}
-            element={<Main filmsCount={FILMS_COUNT} />}
-          />
-          <Route path={AppRoute.Film} element={<Film />} />
+          <Route path={AppRoute.Root} element={<Main films={films} />} />
+          <Route path={AppRoute.Film} element={<Film film={film} />} />
           <Route path={AppRoute.Login} element={<Login />} />
           <Route
             path={AppRoute.MyList}
             element={
               <PrivateRoute authorizationStatus={AuthorizationStatus.Auth}>
-                <MyList />
+                <MyList films={films} />
               </PrivateRoute>
             }
           />
@@ -35,7 +37,7 @@ function App(): JSX.Element {
             path={AppRoute.AddReview}
             element={
               <PrivateRoute authorizationStatus={AuthorizationStatus.Auth}>
-                <AddReview />
+                <AddReview film={film} />
               </PrivateRoute>
             }
           />
