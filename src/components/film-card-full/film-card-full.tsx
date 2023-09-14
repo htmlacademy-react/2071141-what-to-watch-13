@@ -2,22 +2,12 @@ import { Link } from 'react-router-dom';
 import { TFilm } from '../../types/film';
 import Header from '../header/header';
 import { AppRoute } from '../../const';
-import { Fragment } from 'react';
-import { getTimeFromMins } from '../../utils/utils';
+import Tabs from '../tabs/tabs';
 
 type TFimCardFull = { film: TFilm };
 function FilmCardFull({ film }: TFimCardFull): JSX.Element {
-  const {
-    name,
-    posterImage,
-    backgroundImage,
-    director,
-    starring,
-    runTime,
-    genre,
-    released,
-    isFavorite,
-  } = film;
+  const { name, posterImage, backgroundImage, genre, released, isFavorite } =
+    film;
   return (
     <section className="film-card film-card--full">
       <div className="film-card__hero">
@@ -72,61 +62,7 @@ function FilmCardFull({ film }: TFimCardFull): JSX.Element {
           <div className="film-card__poster film-card__poster--big">
             <img src={posterImage} alt={name} width={218} height={327} />
           </div>
-          <div className="film-card__desc">
-            <nav className="film-nav film-card__nav">
-              <ul className="film-nav__list">
-                <li className="film-nav__item">
-                  <a href="#" className="film-nav__link">
-                    Overview
-                  </a>
-                </li>
-                <li className="film-nav__item film-nav__item--active">
-                  <a href="#" className="film-nav__link">
-                    Details
-                  </a>
-                </li>
-                <li className="film-nav__item">
-                  <a href="#" className="film-nav__link">
-                    Reviews
-                  </a>
-                </li>
-              </ul>
-            </nav>
-            <div className="film-card__text film-card__row">
-              <div className="film-card__text-col">
-                <p className="film-card__details-item">
-                  <strong className="film-card__details-name">Director</strong>
-                  <span className="film-card__details-value">{director}</span>
-                </p>
-                <p className="film-card__details-item">
-                  <strong className="film-card__details-name">Starring</strong>
-                  <span className="film-card__details-value">
-                    {starring.map((actor) => (
-                      <Fragment key={actor}>
-                        {actor} <br />
-                      </Fragment>
-                    ))}
-                  </span>
-                </p>
-              </div>
-              <div className="film-card__text-col">
-                <p className="film-card__details-item">
-                  <strong className="film-card__details-name">Run Time</strong>
-                  <span className="film-card__details-value">
-                    {getTimeFromMins(runTime)}
-                  </span>
-                </p>
-                <p className="film-card__details-item">
-                  <strong className="film-card__details-name">Genre</strong>
-                  <span className="film-card__details-value">{genre}</span>
-                </p>
-                <p className="film-card__details-item">
-                  <strong className="film-card__details-name">Released</strong>
-                  <span className="film-card__details-value">{released}</span>
-                </p>
-              </div>
-            </div>
-          </div>
+          <Tabs film={film} />
         </div>
       </div>
     </section>

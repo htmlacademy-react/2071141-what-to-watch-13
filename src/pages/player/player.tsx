@@ -1,10 +1,14 @@
+import { Link } from 'react-router-dom';
+
 function Player(): JSX.Element {
   return (
     <div className="player">
       <video src="#" className="player__video" poster="img/player-poster.jpg" />
-      <button type="button" className="player__exit">
-        Exit
-      </button>
+      <Link to="/" className="player__link">
+        <button type="button" className="player__exit">
+          Exit
+        </button>
+      </Link>
       <div className="player__controls">
         <div className="player__controls-row">
           <div className="player__time">
