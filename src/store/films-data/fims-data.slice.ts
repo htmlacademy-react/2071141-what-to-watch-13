@@ -1,9 +1,10 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { NameSpace } from '../../const';
+import { filmsMock } from '../../mock/films';
 
 const initialState = {
   film: undefined,
-  films: [],
+  films: filmsMock,
   reviews: [],
 };
 

@@ -2,12 +2,11 @@ import FilmCardsList from '../../components/film-cards-list/film-cards-list';
 import Footer from '../../components/footer/footer';
 import Logo from '../../components/logo/logo';
 import UserInfo from '../../components/user-info/user-info';
-import { TFilms } from '../../types/films';
+import { filmsMock } from '../../mock/films';
 
-type TMyListProps = {
-  films: TFilms[];
-};
-function MyList({ films }: TMyListProps): JSX.Element {
+function MyList(): JSX.Element {
+  const favoriteFilms = filmsMock;
+
   return (
     <div className="user-page">
       <header className="page-header user-page__head">
@@ -19,7 +18,7 @@ function MyList({ films }: TMyListProps): JSX.Element {
       </header>
       <section className="catalog">
         <h2 className="catalog__title visually-hidden">Catalog</h2>
-        <FilmCardsList films={films} />
+        <FilmCardsList films={favoriteFilms} />
       </section>
       <Footer />
     </div>

@@ -1,17 +1,18 @@
 import FilmCardFull from '../../components/film-card-full/film-card-full';
 import MoreLikeThis from '../../components/more-like-this/more-like-this';
+import { filmsMock } from '../../mock/films';
 import { TFilm } from '../../types/film';
-import { TFilms } from '../../types/films';
 
 type TFilmProps = {
   film: TFilm;
-  films: TFilms[];
 };
-function Film({ film, films }: TFilmProps): JSX.Element {
+function Film({ film }: TFilmProps): JSX.Element {
+  const similarFilms = filmsMock.slice(0, 3);
+
   return (
     <>
       <FilmCardFull film={film} />
-      <MoreLikeThis films={films} />
+      <MoreLikeThis films={similarFilms} />
     </>
   );
 }

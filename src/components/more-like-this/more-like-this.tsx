@@ -8,7 +8,7 @@ type TMoreLikeThisProps = {
 function MoreLikeThis({ films }: TMoreLikeThisProps) {
   return (
     <div className="page-content">
-      <FilmCardsList films={films.slice(0, 4)} />
+      <FilmCardsList films={films} />
       <Footer />
     </div>
   );

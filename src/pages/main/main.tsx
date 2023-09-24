@@ -1,15 +1,19 @@
 import Catatog from '../../components/catalog/catalog';
 import FilmCardMain from '../../components/film-card-main/film-card-main';
-import { filmMock } from '../../mock/film';
-import { TFilms } from '../../types/films';
+import { useAppSelector } from '../../hooks';
+import { getFilms } from '../../store/films-data/films-data-selectors';
+import { TFilm } from '../../types/film';
 
 type TMainProps = {
-  films: TFilms[];
+  film: TFilm;
 };
-function Main({ films }: TMainProps): JSX.Element {
+
+function Main({ film }: TMainProps): JSX.Element {
+  const films = useAppSelector(getFilms);
+
   return (
     <>
-      <FilmCardMain film={filmMock} />
+      <FilmCardMain film={film} />
       <Catatog films={films} />
     </>
   );
