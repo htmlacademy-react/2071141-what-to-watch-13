@@ -1,9 +1,9 @@
+export const DEFAULT_GENRE = 'All genres';
+
 export enum NameSpace {
-  User = 'USER',
-  Film = 'OFFER',
   Films = 'OFFERS',
-  MyList = 'MYLIST',
-  Review = 'REVIEW',
+  Genres = 'GENRES',
+  User = 'USER',
 }
 
 export enum AppRoute {
@@ -34,7 +34,6 @@ export enum RequestStatus {
   Idle = 'Idle',
   Pending = 'Pending',
   Success = 'Success',
-  Error = 'Error',
   Rejected = 'Rejected',
 }
 
