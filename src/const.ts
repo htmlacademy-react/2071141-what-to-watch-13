@@ -1,7 +1,7 @@
-export const DEFAULT_GENRE = 'All genres';
+export const ALL_GENRES = 'All genres';
 
 export enum NameSpace {
-  Films = 'OFFERS',
+  Films = 'FILMS',
   Genres = 'GENRES',
   User = 'USER',
 }

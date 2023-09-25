@@ -3,4 +3,5 @@ export type TFilms = {
   name: string;
   previewImage: string;
   previewVideoLink: string;
+  genre: string;
 };
