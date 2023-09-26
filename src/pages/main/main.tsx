@@ -1,7 +1,7 @@
 import Catatog from '../../components/catalog/catalog';
 import FilmCardMain from '../../components/film-card-main/film-card-main';
 import FilterGenre from '../../components/filter-genre/filter-genre';
-import { ALL_GENRES } from '../../const';
+import { ALL_GENRES, MAX_GENRES_COUNT } from '../../const';
 import { useAppSelector } from '../../hooks';
 import { getFilms } from '../../store/films-data/films-data-selectors';
 import { getActiveGenre } from '../../store/genres-process/genres-process.selectors';
@@ -28,7 +28,10 @@ function Main({ film }: TMainProps): JSX.Element {
       <FilmCardMain film={film} />
       <div className="page-content">
         <section className="catalog">
-          <FilterGenre genres={genres} activeGenre={activeGenre} />
+          <FilterGenre
+            genres={genres.slice(0, MAX_GENRES_COUNT)}
+            activeGenre={activeGenre}
+          />
           <Catatog films={filmsByGenre} />
         </section>
       </div>
