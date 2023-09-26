@@ -1,13 +1,16 @@
-import axios, { AxiosInstance } from 'axios';
+const AUTH_TOKEN_KEY_NAME = 'what-to-watch-token';
 
-const BACKEND_URL = 'https://13.design.pages.academy/wtw';
-const REQUEST_TIMEOUT = 5000;
+export type TToken = string;
 
-export const createAPI = (): AxiosInstance => {
-  const api = axios.create({
-    baseURL: BACKEND_URL,
-    timeout: REQUEST_TIMEOUT,
-  });
+export const getToken = (): TToken => {
+  const token = localStorage.getItem(AUTH_TOKEN_KEY_NAME);
+  return token ?? '';
+};
 
-  return api;
+export const saveToken = (token: TToken): void => {
+  localStorage.setItem(AUTH_TOKEN_KEY_NAME, token);
+};
+
+export const dropToken = (): void => {
+  localStorage.removeItem(AUTH_TOKEN_KEY_NAME);
 };
