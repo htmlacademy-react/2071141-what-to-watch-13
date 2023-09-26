@@ -10,7 +10,7 @@ export type TAppDispatch = typeof store.dispatch;
 export type TFilmsData = {
   film: TFilm | undefined;
   films: TFilms[];
-  fetchStatus: RequestStatus;
+  fetchingStatus: RequestStatus;
 };
 
 export type TGenreProcess = {

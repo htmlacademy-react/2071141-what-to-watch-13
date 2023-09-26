@@ -26,10 +26,11 @@ export enum AuthorizationStatus {
 export enum APIRoute {
   Login = '/login',
   Logout = '/logout',
-  Film = '/film',
+  Promo = '/promo',
   Films = '/films',
-  MyList = '/mylist',
-  Review = '/review',
+  Similar = '/similar',
+  MyList = '/favorite',
+  Review = '/comments',
 }
 
 export enum RequestStatus {
