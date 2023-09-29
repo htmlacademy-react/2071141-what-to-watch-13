@@ -30,7 +30,7 @@ export enum APIRoute {
   Films = '/films',
   Similar = '/similar',
   MyList = '/favorite',
-  Review = '/comments',
+  Reviews = '/comments',
 }
 
 export enum RequestStatus {
