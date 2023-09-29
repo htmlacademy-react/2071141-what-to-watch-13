@@ -1,11 +1,14 @@
 import { Link } from 'react-router-dom';
-import { TFilm } from '../../types/film';
 import Header from '../header/header';
 import { AppRoute } from '../../const';
 import Tabs from '../tabs/tabs';
+import { TFilm } from '../../types/film';
 
-type TFimCardFull = { film: TFilm };
-function FilmCardFull({ film }: TFimCardFull): JSX.Element {
+type TFilmCardFullProps = {
+  film: TFilm;
+};
+
+function FilmCardFull({ film }: TFilmCardFullProps): JSX.Element {
   const { name, posterImage, backgroundImage, genre, released, isFavorite } =
     film;
   return (

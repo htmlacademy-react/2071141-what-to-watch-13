@@ -1,14 +1,12 @@
 import { Link } from 'react-router-dom';
 import Logo from '../../components/logo/logo';
 import UserInfo from '../../components/user-info/user-info';
-import { TFilm } from '../../types/film';
 import { AppRoute } from '../../const';
 import ReviewForm from '../../components/review-form/review-form';
+import { filmMock } from '../../mock/film';
 
-type TAddReviewProps = {
-  film: TFilm;
-};
-function AddReview({ film }: TAddReviewProps): JSX.Element {
+function AddReview(): JSX.Element {
+  const film = filmMock;
   const { name, backgroundImage, posterImage } = film;
   return (
     <section className="film-card film-card--full">

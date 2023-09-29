@@ -8,8 +8,8 @@ export type TAppState = ReturnType<typeof store.getState>;
 export type TAppDispatch = typeof store.dispatch;
 
 export type TFilmsData = {
-  film: TFilm | undefined;
   films: TFilms[];
+  film: TFilm | null;
   fetchingStatus: RequestStatus;
 };
 

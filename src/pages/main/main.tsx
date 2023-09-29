@@ -1,20 +1,12 @@
-import { useEffect } from 'react';
 import Catatog from '../../components/catalog/catalog';
 import FilmCardMain from '../../components/film-card-main/film-card-main';
 import FilterGenre from '../../components/filter-genre/filter-genre';
 import { ALL_GENRES, MAX_GENRES_COUNT } from '../../const';
-import { useAppDispatch, useAppSelector } from '../../hooks';
+import { useAppSelector } from '../../hooks';
 import { getFilms } from '../../store/films-data/films-data-selectors';
 import { getActiveGenre } from '../../store/genres-process/genres-process.selectors';
-import { TFilm } from '../../types/film';
 
-type TMainProps = {
-  film: TFilm;
-};
-
-function Main({ film }: TMainProps): JSX.Element {
-  const dispatch = useAppDispatch();
-
+function Main(): JSX.Element {
   const films = useAppSelector(getFilms);
   const activeGenre = useAppSelector(getActiveGenre);
   const genres = [ALL_GENRES, ...new Set(films.map((film) => film.genre))];
@@ -24,11 +16,9 @@ function Main({ film }: TMainProps): JSX.Element {
       ? films
       : films.filter((film) => film.genre === activeGenre);
 
-  console.log(activeGenre, genres);
-
   return (
     <>
-      <FilmCardMain film={film} />
+      <FilmCardMain />
       <div className="page-content">
         <section className="catalog">
           <FilterGenre

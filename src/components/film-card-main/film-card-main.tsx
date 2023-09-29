@@ -1,14 +1,12 @@
 import { Link } from 'react-router-dom';
-import { TFilm } from '../../types/film';
 import Header from '../header/header';
 import { AppRoute } from '../../const';
+import { filmMock } from '../../mock/film';
 
-type TFilmCardMainProps = {
-  film: TFilm;
-};
-function FilmCardMain({ film }: TFilmCardMainProps): JSX.Element {
+function FilmCardMain(): JSX.Element {
+  const promoFilm = filmMock;
   const { name, posterImage, backgroundImage, genre, released, isFavorite } =
-    film;
+    promoFilm;
 
   return (
     <section className="film-card">
