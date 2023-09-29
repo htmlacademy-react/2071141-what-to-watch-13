@@ -1,17 +1,24 @@
 import { Link } from 'react-router-dom';
 import Header from '../header/header';
-import { AppRoute } from '../../const';
-import { filmMock } from '../../mock/film';
+import { AppRoute, RequestStatus } from '../../const';
+import { useAppSelector } from '../../hooks';
+import {
+  getPromoFilm,
+  getPromoFilmFetchingStatus,
+} from '../../store/films-data/films-data-selectors';
 
-function FilmCardMain(): JSX.Element {
-  const promoFilm = filmMock;
-  const { name, posterImage, backgroundImage, genre, released, isFavorite } =
-    promoFilm;
+function FilmCardPromo(): JSX.Element {
+  const promoFilm = useAppSelector(getPromoFilm);
+  const promoFilmFetchingStatus = useAppSelector(getPromoFilmFetchingStatus);
 
-  return (
+  if (promoFilmFetchingStatus === RequestStatus.Pending) {
+    return <div>Loading...</div>;
+  }
+
+  return promoFilmFetchingStatus === RequestStatus.Success && promoFilm ? (
     <section className="film-card">
       <div className="film-card__bg">
-        <img src={backgroundImage} alt={name} />
+        <img src={promoFilm.backgroundImage} alt={promoFilm.name} />
       </div>
       <h1 className="visually-hidden">WTW</h1>
 
@@ -20,13 +27,18 @@ function FilmCardMain(): JSX.Element {
       <div className="film-card__wrap">
         <div className="film-card__info">
           <div className="film-card__poster">
-            <img src={posterImage} alt={name} width={218} height={327} />
+            <img
+              src={promoFilm.posterImage}
+              alt={promoFilm.name}
+              width={218}
+              height={327}
+            />
           </div>
           <div className="film-card__desc">
-            <h2 className="film-card__title">{name}</h2>
+            <h2 className="film-card__title">{promoFilm.name}</h2>
             <p className="film-card__meta">
-              <span className="film-card__genre">{genre}</span>
-              <span className="film-card__year">{released}</span>
+              <span className="film-card__genre">{promoFilm.genre}</span>
+              <span className="film-card__year">{promoFilm.released}</span>
             </p>
             <div className="film-card__buttons">
               <Link
@@ -45,7 +57,7 @@ function FilmCardMain(): JSX.Element {
                 type="button"
               >
                 <svg viewBox="0 0 19 20" width={19} height={20}>
-                  {isFavorite ? (
+                  {promoFilm.isFavorite ? (
                     <use xlinkHref="#in-list" />
                   ) : (
                     <use xlinkHref="#add" />
@@ -59,7 +71,9 @@ function FilmCardMain(): JSX.Element {
         </div>
       </div>
     </section>
+  ) : (
+    <div>Not found</div>
   );
 }
 
-export default FilmCardMain;
+export default FilmCardPromo;
