@@ -1,13 +1,13 @@
 import { useParams } from 'react-router-dom';
 import FilmCardFull from '../../components/film-card-full/film-card-full';
 import MoreLikeThis from '../../components/more-like-this/more-like-this';
-import { filmsMock } from '../../mock/films';
 import { useEffect } from 'react';
 import { fetchFilmAction } from '../../store/api-actions';
 import { useAppDispatch, useAppSelector } from '../../hooks';
 import {
   getFilm,
   getFilmFetchingStatus,
+  getFilms,
 } from '../../store/films-data/films-data-selectors';
 import { RequestStatus } from '../../const';
 import PageNotFound from '../page-not-found/page-not-found';
@@ -26,7 +26,7 @@ function Film(): JSX.Element {
     }
   }, [id, dispatch]);
 
-  const similarFilms = filmsMock.slice(0, 3);
+  const similarFilms = useAppSelector(getFilms);
 
   if (filmFetchingStatus === RequestStatus.Pending) {
     return <div>Loading...</div>;
@@ -35,7 +35,7 @@ function Film(): JSX.Element {
   return filmFetchingStatus === RequestStatus.Success && film ? (
     <>
       <FilmCardFull film={film} />
-      <MoreLikeThis films={similarFilms} />
+      <MoreLikeThis films={similarFilms.slice(0, 3)} />
     </>
   ) : (
     <PageNotFound />

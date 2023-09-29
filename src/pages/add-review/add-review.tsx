@@ -3,11 +3,11 @@ import Logo from '../../components/logo/logo';
 import UserInfo from '../../components/user-info/user-info';
 import { AppRoute } from '../../const';
 import ReviewForm from '../../components/review-form/review-form';
-import { filmMock } from '../../mock/film';
+import { useAppSelector } from '../../hooks';
+import { getFilm } from '../../store/films-data/films-data-selectors';
 
 function AddReview(): JSX.Element {
-  const film = filmMock;
-  const { name, backgroundImage, posterImage } = film;
+  const { name, backgroundImage, posterImage } = useAppSelector(getFilm);
   return (
     <section className="film-card film-card--full">
       <div className="film-card__header">

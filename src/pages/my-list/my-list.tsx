@@ -2,10 +2,11 @@ import FilmCardsList from '../../components/film-cards-list/film-cards-list';
 import Footer from '../../components/footer/footer';
 import Logo from '../../components/logo/logo';
 import UserInfo from '../../components/user-info/user-info';
-import { filmsMock } from '../../mock/films';
+import { useAppSelector } from '../../hooks';
+import { getMyList } from '../../store/films-data/films-data-selectors';
 
 function MyList(): JSX.Element {
-  const favoriteFilms = filmsMock;
+  const favoriteFilms = useAppSelector(getMyList);
 
   return (
     <div className="user-page">
