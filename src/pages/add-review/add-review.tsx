@@ -1,18 +1,31 @@
-import { Link } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import Logo from '../../components/logo/logo';
 import UserInfo from '../../components/user-info/user-info';
 import { AppRoute } from '../../const';
 import ReviewForm from '../../components/review-form/review-form';
-import { useAppSelector } from '../../hooks';
+import { useAppDispatch, useAppSelector } from '../../hooks';
 import { getFilm } from '../../store/films-data/films-data-selectors';
+import { useEffect } from 'react';
+import { fetchFilmAction } from '../../store/api-actions';
 
 function AddReview(): JSX.Element {
-  const { name, backgroundImage, posterImage } = useAppSelector(getFilm);
+  const { id } = useParams();
+
+  const dispatch = useAppDispatch();
+
+  const film = useAppSelector(getFilm);
+
+  useEffect(() => {
+    if (id) {
+      dispatch(fetchFilmAction(id));
+    }
+  }, [id, dispatch]);
+
   return (
     <section className="film-card film-card--full">
       <div className="film-card__header">
         <div className="film-card__bg">
-          <img src={backgroundImage} alt="The Grand Budapest Hotel" />
+          <img src={film?.backgroundImage} alt="The Grand Budapest Hotel" />
         </div>
         <h1 className="visually-hidden">WTW</h1>
         <header className="page-header">
@@ -21,7 +34,7 @@ function AddReview(): JSX.Element {
             <ul className="breadcrumbs__list">
               <li className="breadcrumbs__item">
                 <Link to={AppRoute.Film} className="breadcrumbs__link">
-                  {name}
+                  {film?.name}
                 </Link>
               </li>
               <li className="breadcrumbs__item">
@@ -33,8 +46,8 @@ function AddReview(): JSX.Element {
         </header>
         <div className="film-card__poster film-card__poster--small">
           <img
-            src={posterImage}
-            alt="The Grand Budapest Hotel poster"
+            src={film?.posterImage}
+            alt={film?.name}
             width={218}
             height={327}
           />
