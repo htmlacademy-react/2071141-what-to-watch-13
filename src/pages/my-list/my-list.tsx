@@ -1,7 +1,7 @@
 import FilmCardsList from '../../components/film-cards-list/film-cards-list';
 import Footer from '../../components/footer/footer';
 import Logo from '../../components/logo/logo';
-import UserInfo from '../../components/user-info/user-info';
+import UserHeaderNotAuth from '../../components/user-header/user-header-not-auth';
 import { useAppSelector } from '../../hooks';
 import { getMyList } from '../../store/films-data/films-data-selectors';
 
@@ -15,7 +15,7 @@ function MyList(): JSX.Element {
         <h1 className="page-title user-page__title">
           My list <span className="user-page__film-count">9</span>
         </h1>
-        <UserInfo />
+        <UserHeaderNotAuth />
       </header>
       <section className="catalog">
         <h2 className="catalog__title visually-hidden">Catalog</h2>

@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom';
 import { AppRoute } from '../../const';
 
-function SignIn(): JSX.Element {
+function UserHeaderAuth(): JSX.Element {
   return (
     <ul className="user-block">
       <Link to={AppRoute.Login} className="user-block__item">
@@ -10,10 +10,12 @@ function SignIn(): JSX.Element {
         </div>
       </Link>
       <li className="user-block__item">
-        <a className="user-block__link">Sign in</a>
+        <Link to={AppRoute.Login} className="user-block__link">
+          <a className="user-block__link">Sign in</a>
+        </Link>
       </li>
     </ul>
   );
 }
 
-export default SignIn;
+export default UserHeaderAuth;

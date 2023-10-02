@@ -1,6 +1,6 @@
 import { Link, useParams } from 'react-router-dom';
 import Logo from '../../components/logo/logo';
-import UserInfo from '../../components/user-info/user-info';
+import UserHeaderNotAuth from '../../components/user-header/user-header-not-auth';
 import { AppRoute } from '../../const';
 import ReviewForm from '../../components/review-form/review-form';
 import { useAppDispatch, useAppSelector } from '../../hooks';
@@ -42,7 +42,7 @@ function AddReview(): JSX.Element {
               </li>
             </ul>
           </nav>
-          <UserInfo />
+          <UserHeaderNotAuth />
         </header>
         <div className="film-card__poster film-card__poster--small">
           <img
