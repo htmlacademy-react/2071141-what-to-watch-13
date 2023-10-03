@@ -3,12 +3,16 @@ import Header from '../header/header';
 import { AppRoute, RequestStatus } from '../../const';
 import { useAppSelector } from '../../hooks';
 import {
+  getMyList,
   getPromoFilm,
   getPromoFilmFetchingStatus,
 } from '../../store/films-data/films-data-selectors';
+import MyListButton from '../buttons/my-list-button/my-list-button';
 
 function FilmCardPromo(): JSX.Element {
   const promoFilm = useAppSelector(getPromoFilm);
+  const myList = useAppSelector(getMyList);
+
   const promoFilmFetchingStatus = useAppSelector(getPromoFilmFetchingStatus);
 
   if (promoFilmFetchingStatus === RequestStatus.Pending) {
@@ -51,21 +55,11 @@ function FilmCardPromo(): JSX.Element {
                 </svg>
                 <span>Play</span>
               </Link>
-              <Link
-                to={AppRoute.MyList}
-                className="btn btn--list film-card__button"
-                type="button"
-              >
-                <svg viewBox="0 0 19 20" width={19} height={20}>
-                  {promoFilm.isFavorite ? (
-                    <use xlinkHref="#in-list" />
-                  ) : (
-                    <use xlinkHref="#add" />
-                  )}
-                </svg>
-                <span>My list</span>
-                <span className="film-card__count">9</span>
-              </Link>
+              <MyListButton
+                id={promoFilm.id}
+                myList={myList}
+                isActive={promoFilm.isFavorite}
+              />
             </div>
           </div>
         </div>

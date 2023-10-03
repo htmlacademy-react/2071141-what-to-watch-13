@@ -6,6 +6,7 @@ import { ALL_GENRES, MAX_GENRES_COUNT, RequestStatus } from '../../const';
 import { useAppDispatch, useAppSelector } from '../../hooks';
 import {
   fetchFilmsAction,
+  fetchMyListAction,
   fetchPromoFilmAction,
 } from '../../store/api-actions';
 import {
@@ -20,6 +21,7 @@ function Main(): JSX.Element {
   useEffect(() => {
     dispatch(fetchFilmsAction());
     dispatch(fetchPromoFilmAction());
+    dispatch(fetchMyListAction());
   }, [dispatch]);
 
   const films = useAppSelector(getFilms);

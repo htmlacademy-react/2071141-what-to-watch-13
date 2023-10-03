@@ -20,7 +20,7 @@ function App(): JSX.Element {
   if (authorizationStatus === AuthorizationStatus.Unknown) {
     return <div>Loading...</div>;
   }
-
+  //play, tabs, showMore, rewievs
   return (
     <HelmetProvider>
       <HistoryRouter history={browserHistory}>
