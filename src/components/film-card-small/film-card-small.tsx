@@ -6,7 +6,7 @@ type TFilmCardSmaillProps = {
 };
 
 function FilmCardSmall({ film }: TFilmCardSmaillProps): JSX.Element {
-  const { id, name, previewImage } = film;
+  const { id, name, previewImage, previewVideoLink } = film;
 
   return (
     <article className="small-film-card catalog__films-card">

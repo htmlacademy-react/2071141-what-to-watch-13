@@ -4,7 +4,7 @@ export const ALL_GENRES = 'All genres';
 
 export enum NameSpace {
   Films = 'FILMS',
-  Genres = 'GENRES',
+  Main = 'MAIN',
   User = 'USER',
 }
 

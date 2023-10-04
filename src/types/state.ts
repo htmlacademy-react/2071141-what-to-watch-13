@@ -18,8 +18,9 @@ export type TFilmsData = {
   fetchingStatus: RequestStatus;
 };
 
-export type TGenreProcess = {
+export type TMainProcess = {
   genres: TFilm['genre'];
+  filmsCountOnPage: number;
 };
 
 export type TUserProcess = {

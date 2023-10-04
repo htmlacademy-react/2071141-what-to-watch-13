@@ -1,7 +1,10 @@
 import classNames from 'classnames';
 import { useAppDispatch } from '../../hooks';
 import { TFilms } from '../../types/films';
-import { setGenreAction } from '../../store/genres-process/genres-process.slice';
+import {
+  resetFilmsAction,
+  setGenreAction,
+} from '../../store/main-process/main-process.slice';
 
 type TFilterGenreProps = {
   genres: TFilms['genre'][];
@@ -24,7 +27,10 @@ function FilterGenre({ genres, activeGenre }: TFilterGenreProps): JSX.Element {
             <a
               href="#"
               className="catalog__genres-link"
-              onClick={() => dispatch(setGenreAction(genre))}
+              onClick={() => {
+                dispatch(resetFilmsAction());
+                dispatch(setGenreAction(genre));
+              }}
             >
               {genre}
             </a>

@@ -13,7 +13,7 @@ import {
   getFilms,
   getFilmsFetchingStatus,
 } from '../../store/films-data/films-data-selectors';
-import { getActiveGenre } from '../../store/genres-process/genres-process.selectors';
+import { getActiveGenre } from '../../store/main-process/main-process.selectors';
 
 function Main(): JSX.Element {
   const dispatch = useAppDispatch();
