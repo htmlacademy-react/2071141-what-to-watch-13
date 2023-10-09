@@ -4,13 +4,13 @@ import MoreLikeThis from '../../components/more-like-this/more-like-this';
 import { useEffect } from 'react';
 import {
   fetchFilmAction,
+  fetchReviewsAction,
   fetchSimilarFilmsAction,
 } from '../../store/api-actions';
 import { useAppDispatch, useAppSelector } from '../../hooks';
 import {
   getFilm,
   getFilmFetchingStatus,
-  getFilms,
   getSimilarFilms,
 } from '../../store/films-data/films-data-selectors';
 import { RequestStatus } from '../../const';
@@ -28,6 +28,7 @@ function Film(): JSX.Element {
     if (id) {
       dispatch(fetchFilmAction(id));
       dispatch(fetchSimilarFilmsAction(id));
+      dispatch(fetchReviewsAction(id));
     }
   }, [id, dispatch]);
 

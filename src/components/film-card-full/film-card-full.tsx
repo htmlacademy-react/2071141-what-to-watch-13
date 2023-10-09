@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom';
 import Header from '../header/header';
 import { AppRoute } from '../../const';
-import Tabs from '../tabs/tabs';
+import Tabs from '../tabs/tabs/tabs';
 import { TFilm } from '../../types/film';
 
 type TFilmCardFullProps = {
@@ -9,10 +9,18 @@ type TFilmCardFullProps = {
 };
 
 function FilmCardFull({ film }: TFilmCardFullProps): JSX.Element {
-  const { name, posterImage, backgroundImage, genre, released, isFavorite } =
-    film;
+  const {
+    name,
+    posterImage,
+    backgroundImage,
+    backgroundColor,
+    genre,
+    released,
+    isFavorite,
+  } = film;
+
   return (
-    <section className="film-card film-card--full">
+    <section className="film-card film-card--full" style={{ backgroundColor }}>
       <div className="film-card__hero">
         <div className="film-card__bg">
           <img src={backgroundImage} alt={name} />

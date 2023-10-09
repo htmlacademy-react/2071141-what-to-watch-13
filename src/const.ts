@@ -2,6 +2,10 @@ export const MAX_GENRES_COUNT = 9;
 
 export const ALL_GENRES = 'All genres';
 
+export const MIN_COMMENT_LENGTH = 5; //потом исправить на 50!!!
+
+export const MAX_COMMENT_LENGTH = 400;
+
 export enum NameSpace {
   Films = 'FILMS',
   Main = 'MAIN',
@@ -40,6 +44,12 @@ export enum RequestStatus {
   Rejected = 'Rejected',
 }
 
+export enum Tab {
+  Overview = 'Overview',
+  Details = 'Details',
+  Reviews = 'Reviews',
+}
+
 export const ratingMap = {
   '10': 'awesome',
   '9': 'very good',
@@ -52,7 +62,3 @@ export const ratingMap = {
   '2': 'bad',
   '1': 'bad',
 };
-
-export const MIN_COMMENT_LENGTH = 5; //потом исправить на 50!!!
-
-export const MAX_COMMENT_LENGTH = 400;

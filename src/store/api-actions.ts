@@ -69,9 +69,9 @@ export const changeMyListAction = createAsyncThunk<TFilm, TMyList, TExtra>(
 
 export const fetchReviewsAction = createAsyncThunk<
   TReviews,
-  TFilm['id'] /**почему ошибка при уточнении параметра?['id']**/,
+  TFilm['id'],
   TExtra
->(`${NameSpace.Films}/fetchReviews`, async ({ id }, { extra: api }) => {
+>(`${NameSpace.Films}/fetchReviews`, async (id, { extra: api }) => {
   const { data } = await api.get<TReviews>(`${APIRoute.Reviews}/${id}`);
   return data;
 });
