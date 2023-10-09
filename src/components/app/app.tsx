@@ -20,7 +20,7 @@ function App(): JSX.Element {
   if (authorizationStatus === AuthorizationStatus.Unknown) {
     return <div>Loading...</div>;
   }
-  //play, tabs, showMore, rewievs
+
   return (
     <HelmetProvider>
       <HistoryRouter history={browserHistory}>
@@ -34,7 +34,7 @@ function App(): JSX.Element {
           <Route
             path={AppRoute.MyList}
             element={
-              <PrivateRoute authorizationStatus={AuthorizationStatus.Auth}>
+              <PrivateRoute authorizationStatus={authorizationStatus}>
                 <MyList />
               </PrivateRoute>
             }
@@ -42,12 +42,12 @@ function App(): JSX.Element {
           <Route
             path={AppRoute.AddReview}
             element={
-              <PrivateRoute authorizationStatus={AuthorizationStatus.Auth}>
+              <PrivateRoute authorizationStatus={authorizationStatus}>
                 <AddReview />
               </PrivateRoute>
             }
           />
-          <Route path={AppRoute.Player} element={<Player />} />
+          <Route path={`${AppRoute.Player}/:id`} element={<Player />} />
           <Route path="*" element={<PageNotFound />} />
         </Routes>
       </HistoryRouter>

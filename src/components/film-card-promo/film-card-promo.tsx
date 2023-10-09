@@ -8,6 +8,7 @@ import {
   getPromoFilmFetchingStatus,
 } from '../../store/films-data/films-data-selectors';
 import MyListButton from '../buttons/my-list-button/my-list-button';
+import PlayButton from '../buttons/play-button/play-button';
 
 function FilmCardPromo(): JSX.Element {
   const promoFilm = useAppSelector(getPromoFilm);
@@ -45,16 +46,7 @@ function FilmCardPromo(): JSX.Element {
               <span className="film-card__year">{promoFilm.released}</span>
             </p>
             <div className="film-card__buttons">
-              <Link
-                to={AppRoute.Player}
-                className="btn btn--play film-card__button"
-                type="button"
-              >
-                <svg viewBox="0 0 19 19" width={19} height={19}>
-                  <use xlinkHref="#play-s" />
-                </svg>
-                <span>Play</span>
-              </Link>
+              <PlayButton id={promoFilm.id} />
               <MyListButton
                 id={promoFilm.id}
                 myList={myList}
