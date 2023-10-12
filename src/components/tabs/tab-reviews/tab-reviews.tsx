@@ -4,36 +4,37 @@ import {
   getReviewsFetchingStatus,
 } from '../../../store/films-data/films-data-selectors';
 import { RequestStatus } from '../../../const';
+import Review from '../../review/review';
 
 function TabReviews(): JSX.Element {
-  const reviews = useAppSelector(getReviews);
+  const reviewsList = useAppSelector(getReviews);
   const reviewsFetchingStatus = useAppSelector(getReviewsFetchingStatus);
 
   if (reviewsFetchingStatus === RequestStatus.Pending) {
     return <div>Loading...</div>;
   }
 
+  if (reviewsList.length === 0) {
+    return <div className="film-card__reviews film-card__row"></div>;
+  }
+
   return (
     <div className="film-card__reviews film-card__row">
       <div className="film-card__reviews-col">
-        <div className="review">
-          {reviews.map((review) => (
-            <>
-              <blockquote className="review__quote">
-                <p className="review__text">{review.comment}</p>
-
-                <footer className="review__details">
-                  <cite className="review__author">{review.user}</cite>
-                  <time className="review__date" dateTime={review.date}>
-                    {review.date}
-                  </time>
-                </footer>
-              </blockquote>
-              <div className="review__rating">{review.rating}</div>
-            </>
+        {reviewsList
+          .slice(0, Math.ceil(reviewsList.length / 2))
+          .map((review) => (
+            <Review key={review.id} review={review} />
           ))}
-          ;
-        </div>
+        ;
+      </div>
+      <div className="film-card__reviews-col">
+        {reviewsList
+          .slice(Math.ceil(reviewsList.length / 2), reviewsList.length)
+          .map((review) => (
+            <Review key={review.id} review={review} />
+          ))}
+        ;
       </div>
     </div>
   );

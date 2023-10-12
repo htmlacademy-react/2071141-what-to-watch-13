@@ -3,7 +3,7 @@ export type TAddReview = {
   rating: number;
 };
 
-type TReview = {
+export type TReview = {
   id: string;
   date: string;
   user: string;
