@@ -15,7 +15,13 @@ export type TFilmsData = {
   promoFilm: TFilm | null;
   myList: TFilms[];
   reviews: TReviews;
-  fetchingStatus: RequestStatus;
+  filmFetchingStatus: RequestStatus;
+  filmsFetchingStatus: RequestStatus;
+  similarFilmsFetchingStatus: RequestStatus;
+  promoFilmFetchingStatus: RequestStatus;
+  myListFetchingStatus: RequestStatus;
+  reviewsFetchingStatus: RequestStatus;
+  addReviewFetchingStatus: RequestStatus;
 };
 
 export type TMainProcess = {

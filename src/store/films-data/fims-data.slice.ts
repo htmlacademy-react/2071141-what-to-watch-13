@@ -18,7 +18,13 @@ const initialState: TFilmsData = {
   promoFilm: null,
   myList: [],
   reviews: [],
-  fetchingStatus: RequestStatus.Idle,
+  filmFetchingStatus: RequestStatus.Idle,
+  filmsFetchingStatus: RequestStatus.Idle,
+  similarFilmsFetchingStatus: RequestStatus.Idle,
+  promoFilmFetchingStatus: RequestStatus.Idle,
+  myListFetchingStatus: RequestStatus.Idle,
+  reviewsFetchingStatus: RequestStatus.Idle,
+  addReviewFetchingStatus: RequestStatus.Idle,
 };
 
 export const filmsData = createSlice({
@@ -28,59 +34,65 @@ export const filmsData = createSlice({
   extraReducers(builder) {
     builder
       .addCase(fetchFilmsAction.pending, (state) => {
-        state.fetchingStatus = RequestStatus.Pending;
+        state.filmsFetchingStatus = RequestStatus.Pending;
       })
       .addCase(fetchFilmsAction.fulfilled, (state, action) => {
-        state.fetchingStatus = RequestStatus.Success;
+        state.filmsFetchingStatus = RequestStatus.Success;
         state.films = action.payload;
       })
       .addCase(fetchFilmsAction.rejected, (state) => {
-        state.fetchingStatus = RequestStatus.Rejected;
+        state.filmsFetchingStatus = RequestStatus.Rejected;
       })
       .addCase(fetchFilmAction.pending, (state) => {
-        state.fetchingStatus = RequestStatus.Pending;
+        state.filmFetchingStatus = RequestStatus.Pending;
       })
       .addCase(fetchFilmAction.fulfilled, (state, action) => {
-        state.fetchingStatus = RequestStatus.Success;
+        state.filmFetchingStatus = RequestStatus.Success;
         state.film = action.payload;
       })
       .addCase(fetchFilmAction.rejected, (state) => {
-        state.fetchingStatus = RequestStatus.Rejected;
+        state.filmFetchingStatus = RequestStatus.Rejected;
       })
       .addCase(fetchSimilarFilmsAction.pending, (state) => {
-        state.fetchingStatus = RequestStatus.Pending;
+        state.similarFilmsFetchingStatus = RequestStatus.Pending;
       })
       .addCase(fetchSimilarFilmsAction.fulfilled, (state, action) => {
-        state.fetchingStatus = RequestStatus.Success;
+        state.similarFilmsFetchingStatus = RequestStatus.Success;
         state.similarFilms = action.payload;
       })
       .addCase(fetchPromoFilmAction.pending, (state) => {
-        state.fetchingStatus = RequestStatus.Pending;
+        state.promoFilmFetchingStatus = RequestStatus.Pending;
       })
       .addCase(fetchPromoFilmAction.fulfilled, (state, action) => {
-        state.fetchingStatus = RequestStatus.Success;
+        state.promoFilmFetchingStatus = RequestStatus.Success;
         state.promoFilm = action.payload;
       })
       .addCase(fetchMyListAction.pending, (state) => {
-        state.fetchingStatus = RequestStatus.Pending;
+        state.myListFetchingStatus = RequestStatus.Pending;
       })
       .addCase(fetchMyListAction.fulfilled, (state, action) => {
-        state.fetchingStatus = RequestStatus.Success;
+        state.myListFetchingStatus = RequestStatus.Success;
         state.myList = action.payload;
       })
       .addCase(fetchReviewsAction.pending, (state) => {
-        state.fetchingStatus = RequestStatus.Pending;
+        state.reviewsFetchingStatus = RequestStatus.Pending;
       })
       .addCase(fetchReviewsAction.fulfilled, (state, action) => {
-        state.fetchingStatus = RequestStatus.Success;
+        state.reviewsFetchingStatus = RequestStatus.Success;
         state.reviews = action.payload;
+      })
+      .addCase(fetchReviewsAction.rejected, (state) => {
+        state.reviewsFetchingStatus = RequestStatus.Rejected;
       })
       .addCase(addReviewAction.pending, (state) => {
-        state.fetchingStatus = RequestStatus.Pending;
+        state.addReviewFetchingStatus = RequestStatus.Pending;
       })
       .addCase(addReviewAction.fulfilled, (state, action) => {
-        state.fetchingStatus = RequestStatus.Success;
+        state.addReviewFetchingStatus = RequestStatus.Success;
         state.reviews = action.payload;
+      })
+      .addCase(addReviewAction.rejected, (state) => {
+        state.addReviewFetchingStatus = RequestStatus.Rejected;
       });
   },
 });

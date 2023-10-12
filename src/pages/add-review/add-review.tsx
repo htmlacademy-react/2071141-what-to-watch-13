@@ -1,7 +1,6 @@
 import { Link, useParams } from 'react-router-dom';
 import Logo from '../../components/logo/logo';
-import UserHeaderNotAuth from '../../components/user-header/user-header-not-auth';
-import { AppRoute } from '../../const';
+import UserHeaderAuth from '../../components/user-header/user-header-auth';
 import ReviewForm from '../../components/review-form/review-form';
 import { useAppDispatch, useAppSelector } from '../../hooks';
 import { getFilm } from '../../store/films-data/films-data-selectors';
@@ -41,7 +40,7 @@ function AddReview(): JSX.Element {
           <nav className="breadcrumbs">
             <ul className="breadcrumbs__list">
               <li className="breadcrumbs__item">
-                <Link to={AppRoute.Film} className="breadcrumbs__link">
+                <Link to={`/films/${id}`} className="breadcrumbs__link">
                   {film.name}
                 </Link>
               </li>
@@ -50,7 +49,7 @@ function AddReview(): JSX.Element {
               </li>
             </ul>
           </nav>
-          <UserHeaderNotAuth />
+          <UserHeaderAuth />
         </header>
         <div className="film-card__poster film-card__poster--small">
           <img
