@@ -19,9 +19,9 @@ function TabDetails({ film }: TTabDetailsProps): JSX.Element {
         <p className="film-card__details-item">
           <strong className="film-card__details-name">Starring</strong>
           <span className="film-card__details-value">
-            {starring.map((actor) => (
-              <Fragment key={actor}>
-                {actor} <br />
+            {starring.map((star) => (
+              <Fragment key={star}>
+                {star} <br />
               </Fragment>
             ))}
           </span>

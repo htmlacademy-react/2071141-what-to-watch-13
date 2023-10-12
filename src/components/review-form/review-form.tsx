@@ -40,7 +40,7 @@ function ReviewForm({ id, backgroundColor }: TReviewFormProps): JSX.Element {
       rating: Number(rating),
       comment: comment,
     };
-    console.log(reviewData);
+
     dispatch(addReviewAction({ reviewData, id }));
   };
 

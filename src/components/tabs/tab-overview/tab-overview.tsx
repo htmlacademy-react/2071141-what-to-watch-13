@@ -1,4 +1,3 @@
-import { Fragment } from 'react';
 import { TFilm } from '../../../types/film';
 
 type TTabOverviewProps = {
@@ -26,13 +25,7 @@ function TabOverview({ film }: TTabOverviewProps): JSX.Element {
 
         <p className="film-card__starring">
           <strong>
-            Starring:{' '}
-            {starring.map((actor) => (
-              <Fragment key={actor}>
-                {actor}
-                {', '}
-              </Fragment>
-            ))}{' '}
+            Starring: {starring.join(', ')}
             and other
           </strong>
         </p>
