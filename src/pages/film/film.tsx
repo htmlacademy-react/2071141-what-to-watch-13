@@ -15,6 +15,8 @@ import {
 } from '../../store/films-data/films-data-selectors';
 import { RequestStatus } from '../../const';
 import PageNotFound from '../page-not-found/page-not-found';
+import Footer from '../../components/footer/footer';
+import FilmCardsList from '../../components/film-cards-list/film-cards-list';
 
 function Film(): JSX.Element {
   const { id } = useParams();
@@ -41,7 +43,10 @@ function Film(): JSX.Element {
   return filmFetchingStatus === RequestStatus.Success && film ? (
     <>
       <FilmCardFull film={film} />
-      <MoreLikeThis films={similarFilms.slice(0, 4)} />
+      <div className="page-content">
+        <FilmCardsList films={similarFilms.slice(0, 4)} />
+        <Footer />
+      </div>
     </>
   ) : (
     <PageNotFound />
