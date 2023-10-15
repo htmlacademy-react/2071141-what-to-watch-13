@@ -28,7 +28,7 @@ function App(): JSX.Element {
       <HistoryRouter history={browserHistory}>
         <Routes>
           <Route path={AppRoute.Root} element={<Main />} />
-          <Route path={AppRoute.Film} element={<Film />} />
+          <Route path={`${AppRoute.Film}/:id`} element={<Film />} />
           <Route
             path={AppRoute.Login}
             element={<Login authorizationStatus={authorizationStatus} />}

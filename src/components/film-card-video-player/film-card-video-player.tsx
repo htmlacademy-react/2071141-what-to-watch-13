@@ -40,9 +40,9 @@ function FilmCardVideoPlayer({
 
   return (
     <video
+      poster={previewImage}
       muted
       src={previewVideoLink}
-      poster={previewImage}
       style={{ width: '280px', height: '175px' }}
       ref={videoRef}
     />
