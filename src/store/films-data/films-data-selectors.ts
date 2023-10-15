@@ -36,6 +36,10 @@ export const getPromoFilmFetchingStatus = (
 export const getMyList = (
   state: Pick<TAppState, NameSpace.Films>
 ): TFilmsData['myList'] => state[NameSpace.Films].myList;
+export const getMyListFetchingStatus = (
+  state: Pick<TAppState, NameSpace.Films>
+): TFilmsData['myListFetchingStatus'] =>
+  state[NameSpace.Films].myListFetchingStatus;
 
 export const getReviews = (
   state: Pick<TAppState, NameSpace.Films>

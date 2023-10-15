@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom';
 import { TFilms } from '../../types/films';
 import FilmCardVideoPlayer from '../film-card-video-player/film-card-video-player';
+import { AppRoute } from '../../const';
 
 type TFilmCardSmaillProps = {
   film: TFilms;
@@ -30,8 +31,7 @@ function FilmCardSmall({
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
     >
-      <Link to={`films/${id}`} className="small-film-card__link">
-        {/* Почему дублируется адрес...???? */}
+      <Link to={`${AppRoute.Film}/${id}`} className="small-film-card__link">
         <div className="small-film-card__image">
           <FilmCardVideoPlayer
             previewImage={previewImage}

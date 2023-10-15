@@ -1,30 +1,52 @@
-import { useRef } from 'react';
-import { useAppDispatch } from '../../hooks';
+import { ChangeEvent, useState } from 'react';
+import { useAppDispatch, useAppSelector } from '../../hooks';
 import { loginAction } from '../../store/api-actions';
-import { useNavigate } from 'react-router-dom';
-import { AppRoute } from '../../const';
+import { RequestStatus } from '../../const';
+import { getLoginFetchingStatus } from '../../store/user-process/user-process.selectors';
+import { TAuthData } from '../../types/auth-data';
+import classNames from 'classnames';
 
 const EMAIL_INVALID_MESSAGE = 'Please enter a valid email address';
 const PASSWORD_INVALID_MESSAGE =
-  "We can't  recognize this email and password combination. Please try again.";
+  'We cant  recognize this email and password combination. Please try again.';
+
+const emailPattern =
+  /^[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?$/;
+const passwordPattern = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{2,8}$/;
+
 function LoginForm() {
-  const emailRef = useRef<HTMLInputElement | null>(null);
-  const passwordRef = useRef<HTMLInputElement | null>(null);
-
   const dispatch = useAppDispatch();
-  const navigate = useNavigate();
+  const loginFetchingStatus = useAppSelector(getLoginFetchingStatus);
 
-  const handleFormSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const [formData, setFormData] = useState<TAuthData>({
+    email: '',
+    password: '',
+  });
+
+  const [isValid, setIsValid] = useState({ email: true, password: true });
+  const [errorMessage, setErrorMessage] = useState('');
+
+  const handleFormChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => {
+    const { name, value } = e.target;
+    setFormData({ ...formData, [name]: value });
+  };
+
+  const handleFormSubmit = (e: ChangeEvent<HTMLFormElement>) => {
     e.preventDefault();
-
-    if (emailRef.current !== null && passwordRef.current !== null) {
+    if (!emailPattern.test(formData.email)) {
+      setErrorMessage(EMAIL_INVALID_MESSAGE);
+      setIsValid({ email: false, password: true });
+    } else if (!passwordPattern.test(formData.password)) {
+      setErrorMessage(PASSWORD_INVALID_MESSAGE);
+      setIsValid({ email: true, password: false });
+    }
+    if (isValid.email && isValid.password) {
       dispatch(
-        loginAction({
-          email: emailRef.current.value,
-          password: passwordRef.current.value,
-        })
+        loginAction({ email: formData.email, password: formData.password })
       );
-      navigate(AppRoute.Root);
+      //navigate(AppRoute.Root);
     }
   };
 
@@ -36,18 +58,24 @@ function LoginForm() {
         method="past"
         onSubmit={handleFormSubmit}
       >
-        <div className="sign-in__message">
-          <p>Please enter a valid email address</p>
-        </div>
+        {errorMessage && (
+          <div className="sign-in__message">
+            <p>{errorMessage}</p>
+          </div>
+        )}
         <div className="sign-in__fields">
-          <div className="sign-in__field sign-in__field--error">
+          <div
+            className={classNames('sign-in__field', {
+              'sign-in__field--error': !isValid.email,
+            })}
+          >
             <input
-              ref={emailRef}
+              onChange={handleFormChange}
+              value={formData.email}
               className="sign-in__input"
               type="email"
               placeholder="Email address"
-              name="user-email"
-              id="user-email"
+              name="email"
             />
             <label
               className="sign-in__label visually-hidden"
@@ -56,14 +84,18 @@ function LoginForm() {
               Email address
             </label>
           </div>
-          <div className="sign-in__field">
+          <div
+            className={classNames('sign-in__field', {
+              'sign-in__field--error': !isValid.password,
+            })}
+          >
             <input
-              ref={passwordRef}
+              onChange={handleFormChange}
+              value={formData.password}
               className="sign-in__input"
               type="password"
               placeholder="Password"
-              name="user-password"
-              id="user-password"
+              name="password"
             />
             <label
               className="sign-in__label visually-hidden"
@@ -75,7 +107,9 @@ function LoginForm() {
         </div>
         <div className="sign-in__submit">
           <button className="sign-in__btn" type="submit">
-            Sign in
+            {loginFetchingStatus === RequestStatus.Pending
+              ? 'Siggning in...'
+              : 'Sign in'}
           </button>
         </div>
       </form>

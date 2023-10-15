@@ -108,6 +108,7 @@ export const loginAction = createAsyncThunk<TUser, TAuthData, TExtra>(
       password,
     });
     saveToken(data.token);
+    // redirectToRoute(AppRoute.Root);
 
     return data;
   }
