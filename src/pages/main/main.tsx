@@ -14,6 +14,7 @@ import {
   getFilmsFetchingStatus,
 } from '../../store/films-data/films-data-selectors';
 import { getActiveGenre } from '../../store/main-process/main-process.selectors';
+import { Helmet } from 'react-helmet-async';
 
 function Main(): JSX.Element {
   const dispatch = useAppDispatch();
@@ -41,6 +42,9 @@ function Main(): JSX.Element {
 
   return (
     <>
+      <Helmet>
+        <title>What to Watch. Main page</title>
+      </Helmet>
       <FilmCardPromo />
       <div className="page-content">
         <section className="catalog">

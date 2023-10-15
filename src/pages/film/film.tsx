@@ -1,6 +1,5 @@
 import { useParams } from 'react-router-dom';
 import FilmCardFull from '../../components/film-card-full/film-card-full';
-import MoreLikeThis from '../../components/more-like-this/more-like-this';
 import { useEffect } from 'react';
 import {
   fetchFilmAction,
