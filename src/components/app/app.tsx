@@ -21,8 +21,6 @@ function App(): JSX.Element {
     return <div>Loading...</div>;
   }
 
-  //отзывы, обработка ошибок, избранное, видео
-
   return (
     <HelmetProvider>
       <HistoryRouter history={browserHistory}>

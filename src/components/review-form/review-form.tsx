@@ -1,14 +1,16 @@
 import { ChangeEvent, Fragment, useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { useAppDispatch, useAppSelector } from '../../hooks';
+import { getAddReviewFetchingStatus } from '../../store/films-data/films-data-selectors';
+import { addReviewAction } from '../../store/api-actions';
+import { TFilm } from '../../types/film';
 import {
+  AppRoute,
   MAX_COMMENT_LENGTH,
   MIN_COMMENT_LENGTH,
   RequestStatus,
   ratingMap,
 } from '../../const';
-import { TFilm } from '../../types/film';
-import { useAppDispatch, useAppSelector } from '../../hooks';
-import { getReviewsFetchingStatus } from '../../store/films-data/films-data-selectors';
-import { addReviewAction } from '../../store/api-actions';
 
 type TReviewFormProps = {
   id: TFilm['id'];
@@ -17,39 +19,41 @@ type TReviewFormProps = {
 
 function ReviewForm({ id, backgroundColor }: TReviewFormProps): JSX.Element {
   const dispatch = useAppDispatch();
-  const reviewsFetchingStatus = useAppSelector(getReviewsFetchingStatus);
+  const navigate = useNavigate();
+  const addReviewFetchingStatus = useAppSelector(getAddReviewFetchingStatus);
 
   const [comment, setComment] = useState('');
   const [rating, setRating] = useState('');
+
   const isValid =
     comment.length >= MIN_COMMENT_LENGTH &&
     comment.length <= MAX_COMMENT_LENGTH &&
     rating !== '';
-  // todo: валидация
-  const handleTextAreaChange = (evt: ChangeEvent<HTMLTextAreaElement>) => {
-    setComment(evt.target.value);
-  };
+  const isUIBlocked = addReviewFetchingStatus === RequestStatus.Pending;
 
-  const handleInputChange = (evt: ChangeEvent<HTMLInputElement>) => {
-    setRating(evt.target.value);
+  const handleTextAreaChange = (e: ChangeEvent<HTMLTextAreaElement>) => {
+    setComment(e.target.value);
   };
-
-  const handleFormSubmit = (evt: ChangeEvent<HTMLFormElement>) => {
-    evt.preventDefault();
+  const handleInputChange = (e: ChangeEvent<HTMLInputElement>) => {
+    setRating(e.target.value);
+  };
+  const handleFormSubmit = (e: ChangeEvent<HTMLFormElement>) => {
+    e.preventDefault();
     const reviewData = {
       rating: Number(rating),
       comment: comment,
     };
 
     dispatch(addReviewAction({ reviewData, id }));
+    navigate(`${AppRoute.Film}/${id}`);
   };
 
   useEffect(() => {
-    if (reviewsFetchingStatus === RequestStatus.Success) {
+    if (addReviewFetchingStatus === RequestStatus.Success) {
       setComment('');
       setRating('');
     }
-  }, [reviewsFetchingStatus]);
+  }, [addReviewFetchingStatus, id]);
 
   return (
     <div className="add-review">
@@ -100,9 +104,9 @@ function ReviewForm({ id, backgroundColor }: TReviewFormProps): JSX.Element {
               className="add-review__btn"
               style={{ backgroundColor }}
               type="submit"
-              disabled={!isValid}
+              disabled={!isValid || isUIBlocked}
             >
-              Post
+              {isUIBlocked ? 'Sending...' : 'Post'}
             </button>
           </div>
         </div>

@@ -3,15 +3,20 @@ import Logo from '../../components/logo/logo';
 import UserHeaderAuth from '../../components/user-header/user-header-auth';
 import ReviewForm from '../../components/review-form/review-form';
 import { useAppDispatch, useAppSelector } from '../../hooks';
-import { getFilm } from '../../store/films-data/films-data-selectors';
+import {
+  getFilm,
+  getFilmFetchingStatus,
+} from '../../store/films-data/films-data-selectors';
 import { useEffect } from 'react';
 import { fetchFilmAction } from '../../store/api-actions';
-import PageNotFound from '../page-not-found/page-not-found';
+import { AppRoute, RequestStatus } from '../../const';
 
 function AddReview(): JSX.Element {
   const { id } = useParams();
-
   const dispatch = useAppDispatch();
+
+  const film = useAppSelector(getFilm);
+  const filmFetchingStatus = useAppSelector(getFilmFetchingStatus);
 
   useEffect(() => {
     if (id) {
@@ -19,10 +24,8 @@ function AddReview(): JSX.Element {
     }
   }, [id, dispatch]);
 
-  const film = useAppSelector(getFilm);
-
-  if (!film) {
-    return <PageNotFound />;
+  if (filmFetchingStatus === RequestStatus.Pending || !film) {
+    return <div>Loading...</div>;
   }
 
   return (
@@ -40,7 +43,10 @@ function AddReview(): JSX.Element {
           <nav className="breadcrumbs">
             <ul className="breadcrumbs__list">
               <li className="breadcrumbs__item">
-                <Link to={`/films/${id}`} className="breadcrumbs__link">
+                <Link
+                  to={`${AppRoute.Film}/${id}`}
+                  className="breadcrumbs__link"
+                >
                   {film.name}
                 </Link>
               </li>
