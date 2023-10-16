@@ -2,7 +2,7 @@ export const MAX_GENRES_COUNT = 9;
 
 export const ALL_GENRES = 'All genres';
 
-export const MIN_COMMENT_LENGTH = 5; //потом исправить на 50!!!
+export const MIN_COMMENT_LENGTH = 50;
 
 export const MAX_COMMENT_LENGTH = 400;
 

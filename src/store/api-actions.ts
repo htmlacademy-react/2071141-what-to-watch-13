@@ -1,7 +1,7 @@
 import { AxiosInstance } from 'axios';
 import { TAppDispatch, TAppState } from '../types/state';
 import { createAsyncThunk } from '@reduxjs/toolkit';
-import { APIRoute, NameSpace } from '../const';
+import { APIRoute, AppRoute, NameSpace } from '../const';
 import { TFilms } from '../types/films';
 import { TFilm } from '../types/film';
 import { TMyList } from '../types/my-list';
@@ -9,6 +9,7 @@ import { TAddReview, TReviews } from '../types/reviews';
 import { TUser } from '../types/user';
 import { dropToken, saveToken } from '../services/token';
 import { TAuthData } from '../types/auth-data';
+import { redirectToRoute } from './actions';
 
 type TExtra = {
   dispatch: TAppDispatch;
@@ -59,10 +60,11 @@ export const fetchMyListAction = createAsyncThunk<TFilms[], undefined, TExtra>(
 
 export const changeMyListAction = createAsyncThunk<TFilm, TMyList, TExtra>(
   `${NameSpace.Films}/changeMyList`,
-  async ({ id, status }, { extra: api }) => {
+  async ({ id, status }, { dispatch, extra: api }) => {
     const { data } = await api.post<TFilm>(
       `${APIRoute.MyList}/${id}/${status}`
     );
+    dispatch(fetchMyListAction());
     return data;
   }
 );
@@ -108,7 +110,7 @@ export const loginAction = createAsyncThunk<TUser, TAuthData, TExtra>(
       password,
     });
     saveToken(data.token);
-    // redirectToRoute(AppRoute.Root);
+    redirectToRoute(AppRoute.Root);
 
     return data;
   }

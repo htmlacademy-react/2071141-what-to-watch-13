@@ -46,7 +46,6 @@ function LoginForm() {
       dispatch(
         loginAction({ email: formData.email, password: formData.password })
       );
-      //navigate(AppRoute.Root);
     }
   };
 

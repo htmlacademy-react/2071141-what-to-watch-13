@@ -9,6 +9,7 @@ import {
   fetchMyListAction,
 } from '../../../store/api-actions';
 import { TMyList } from '../../../types/my-list';
+import { useNavigate } from 'react-router-dom';
 
 type TMyListButtonProps = {
   id: TFilm['id'];
@@ -22,33 +23,46 @@ function MyListButton({
   myList,
 }: TMyListButtonProps): JSX.Element {
   const dispatch = useAppDispatch();
-  const authorizationStatus = useAppSelector(getAuthorizationStatus);
+  const navigate = useNavigate();
+
+  const isAuthorized =
+    useAppSelector(getAuthorizationStatus) === AuthorizationStatus.Auth;
 
   const [isFavorite, setIsFavorite] = useState<boolean>(isActive);
 
-  // useEffect(() => {
-  //   if (authorizationStatus === AuthorizationStatus.Auth) {
-  //     dispatch(fetchMyListAction());
-  //   }
-  // }, [dispatch, authorizationStatus]);
+  useEffect(() => {
+    if (isAuthorized) {
+      dispatch(fetchMyListAction());
+    }
+  }, [dispatch, isAuthorized]);
 
-  const handleMyListClick = () => () => {
-    const changedFavoriteStatus = Number(!isFavorite) as TMyList['status'];
-    setIsFavorite(!isFavorite);
-    dispatch(changeMyListAction({ id, status: changedFavoriteStatus }));
+  const handleMyListClick = () => {
+    if (isAuthorized) {
+      const changedFavoriteStatus = Number(!isFavorite) as TMyList['status'];
+      setIsFavorite(!isFavorite);
+      dispatch(changeMyListAction({ id, status: changedFavoriteStatus }));
+    } else {
+      navigate(AppRoute.Login);
+    }
   };
 
   return (
-    <button className="btn btn--list film-card__button" type="button">
+    <button
+      className="btn btn--list film-card__button"
+      type="button"
+      onClick={handleMyListClick}
+    >
       <svg viewBox="0 0 19 20" width={19} height={20}>
-        {isFavorite ? (
-          <use xlinkHref="#in-list" onClick={handleMyListClick} />
+        {isAuthorized && isFavorite ? (
+          <use xlinkHref="#in-list" />
         ) : (
           <use xlinkHref="#add" />
         )}
       </svg>
       <span>My list</span>
-      <span className="film-card__count">{myList.length}</span>
+      {isAuthorized && (
+        <span className="film-card__count">{myList.length}</span>
+      )}
     </button>
   );
 }

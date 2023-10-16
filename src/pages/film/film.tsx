@@ -3,6 +3,7 @@ import FilmCardFull from '../../components/film-card-full/film-card-full';
 import { useEffect } from 'react';
 import {
   fetchFilmAction,
+  fetchMyListAction,
   fetchReviewsAction,
   fetchSimilarFilmsAction,
 } from '../../store/api-actions';
@@ -30,6 +31,7 @@ function Film(): JSX.Element {
       dispatch(fetchFilmAction(id));
       dispatch(fetchSimilarFilmsAction(id));
       dispatch(fetchReviewsAction(id));
+      dispatch(fetchMyListAction());
     }
   }, [id, dispatch]);
 

@@ -1,6 +1,5 @@
-import { Link } from 'react-router-dom';
 import Header from '../header/header';
-import { AppRoute, RequestStatus } from '../../const';
+import { RequestStatus } from '../../const';
 import { useAppSelector } from '../../hooks';
 import {
   getMyList,

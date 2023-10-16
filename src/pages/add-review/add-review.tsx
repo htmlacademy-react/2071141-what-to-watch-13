@@ -10,6 +10,7 @@ import {
 import { useEffect } from 'react';
 import { fetchFilmAction } from '../../store/api-actions';
 import { AppRoute, RequestStatus } from '../../const';
+import PageNotFound from '../page-not-found/page-not-found';
 
 function AddReview(): JSX.Element {
   const { id } = useParams();
@@ -26,6 +27,10 @@ function AddReview(): JSX.Element {
 
   if (filmFetchingStatus === RequestStatus.Pending || !film) {
     return <div>Loading...</div>;
+  }
+
+  if (!id) {
+    return <PageNotFound />;
   }
 
   return (
