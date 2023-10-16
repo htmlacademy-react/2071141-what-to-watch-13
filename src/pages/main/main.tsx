@@ -16,6 +16,7 @@ import {
 import { getActiveGenre } from '../../store/main-process/main-process.selectors';
 import { Helmet } from 'react-helmet-async';
 import Loader from '../../components/loader/loader';
+import Footer from '../../components/footer/footer';
 
 function Main(): JSX.Element {
   const dispatch = useAppDispatch();
@@ -55,6 +56,7 @@ function Main(): JSX.Element {
           />
           <Catatog films={filmsByGenre} />
         </section>
+        <Footer />
       </div>
     </>
   );

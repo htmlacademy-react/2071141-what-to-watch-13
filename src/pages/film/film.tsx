@@ -46,7 +46,10 @@ function Film(): JSX.Element {
     <>
       <FilmCardFull film={film} />
       <div className="page-content">
-        <FilmCardsList films={similarFilms.slice(0, 4)} />
+        <section className="catalog catalog--like-this">
+          <h2 className="catalog__title">More like this</h2>
+          <FilmCardsList films={similarFilms.slice(0, 4)} />
+        </section>
         <Footer />
       </div>
     </>

@@ -3,7 +3,6 @@ import { getFilmsCountOnPage } from '../../store/main-process/main-process.selec
 import { TFilms } from '../../types/films';
 import ShowMoreButton from '../buttons/show-more-button/show-more-button';
 import FilmCardsList from '../film-cards-list/film-cards-list';
-import Footer from '../footer/footer';
 
 type TCatalogProps = {
   films: TFilms[];
@@ -22,7 +21,6 @@ function Catatog({ films }: TCatalogProps): JSX.Element {
     <>
       <FilmCardsList films={filmsOnPage} />
       <div className="catalog__more">{isShowMore && <ShowMoreButton />}</div>
-      <Footer />
     </>
   );
 }
