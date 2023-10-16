@@ -13,15 +13,14 @@ import { useAppSelector } from '../../hooks';
 import { getAuthorizationStatus } from '../../store/user-process/user-process.selectors';
 import browserHistory from '../../browser-history';
 import HistoryRouter from '../history-route/history-route';
+import Loader from '../loader/loader';
 
 function App(): JSX.Element {
   const authorizationStatus = useAppSelector(getAuthorizationStatus);
 
   if (authorizationStatus === AuthorizationStatus.Unknown) {
-    return <div>Loading...</div>;
+    return <Loader />;
   }
-
-  // блок ошибок, избранное, крутилка
 
   return (
     <HelmetProvider>

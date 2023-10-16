@@ -8,6 +8,7 @@ import {
 } from '../../store/films-data/films-data-selectors';
 import MyListButton from '../buttons/my-list-button/my-list-button';
 import PlayButton from '../buttons/play-button/play-button';
+import Loader from '../loader/loader';
 
 function FilmCardPromo(): JSX.Element {
   const promoFilm = useAppSelector(getPromoFilm);
@@ -16,7 +17,7 @@ function FilmCardPromo(): JSX.Element {
   const promoFilmFetchingStatus = useAppSelector(getPromoFilmFetchingStatus);
 
   if (promoFilmFetchingStatus === RequestStatus.Pending) {
-    return <div>Loading...</div>;
+    return <Loader />;
   }
 
   return promoFilmFetchingStatus === RequestStatus.Success && promoFilm ? (

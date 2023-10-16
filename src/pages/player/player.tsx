@@ -9,6 +9,7 @@ import {
 } from '../../store/films-data/films-data-selectors';
 import PageNotFound from '../page-not-found/page-not-found';
 import { getVideoTimeFormat } from '../../utils/utils';
+import Loader from '../../components/loader/loader';
 
 function Player(): JSX.Element {
   const dispatch = useAppDispatch();
@@ -32,7 +33,7 @@ function Player(): JSX.Element {
   const film = useAppSelector(getFilm);
 
   if (fetchingStatus === RequestStatus.Pending) {
-    return <div>Loading...</div>;
+    return <Loader />;
   }
 
   if (!film || !id) {

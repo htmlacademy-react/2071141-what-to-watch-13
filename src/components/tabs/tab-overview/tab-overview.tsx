@@ -1,4 +1,5 @@
 import { TFilm } from '../../../types/film';
+import { getFilmRating } from '../../../utils/utils';
 
 type TTabOverviewProps = {
   film: TFilm;
@@ -12,7 +13,7 @@ function TabOverview({ film }: TTabOverviewProps): JSX.Element {
       <div className="film-rating">
         <div className="film-rating__score">{rating}</div>
         <p className="film-rating__meta">
-          <span className="film-rating__level">Very good</span>
+          <span className="film-rating__level">{getFilmRating(rating)}</span>
           <span className="film-rating__count">{scoresCount} ratings</span>
         </p>
       </div>

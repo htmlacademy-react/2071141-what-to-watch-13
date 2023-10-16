@@ -11,6 +11,7 @@ import { useEffect } from 'react';
 import { fetchFilmAction } from '../../store/api-actions';
 import { AppRoute, RequestStatus } from '../../const';
 import PageNotFound from '../page-not-found/page-not-found';
+import Loader from '../../components/loader/loader';
 
 function AddReview(): JSX.Element {
   const { id } = useParams();
@@ -26,7 +27,7 @@ function AddReview(): JSX.Element {
   }, [id, dispatch]);
 
   if (filmFetchingStatus === RequestStatus.Pending || !film) {
-    return <div>Loading...</div>;
+    return <Loader />;
   }
 
   if (!id) {

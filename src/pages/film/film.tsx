@@ -17,6 +17,7 @@ import { RequestStatus } from '../../const';
 import PageNotFound from '../page-not-found/page-not-found';
 import Footer from '../../components/footer/footer';
 import FilmCardsList from '../../components/film-cards-list/film-cards-list';
+import Loader from '../../components/loader/loader';
 
 function Film(): JSX.Element {
   const { id } = useParams();
@@ -38,7 +39,7 @@ function Film(): JSX.Element {
   const similarFilms = useAppSelector(getSimilarFilms);
 
   if (filmFetchingStatus === RequestStatus.Pending) {
-    return <div>Loading...</div>;
+    return <Loader />;
   }
 
   return filmFetchingStatus === RequestStatus.Success && film ? (

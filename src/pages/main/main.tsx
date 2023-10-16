@@ -15,6 +15,7 @@ import {
 } from '../../store/films-data/films-data-selectors';
 import { getActiveGenre } from '../../store/main-process/main-process.selectors';
 import { Helmet } from 'react-helmet-async';
+import Loader from '../../components/loader/loader';
 
 function Main(): JSX.Element {
   const dispatch = useAppDispatch();
@@ -37,7 +38,7 @@ function Main(): JSX.Element {
       : films.filter((film) => film.genre === activeGenre);
 
   if (filmsFetchingStatus === RequestStatus.Pending) {
-    return <div>Loading...</div>;
+    return <Loader />;
   }
 
   return (

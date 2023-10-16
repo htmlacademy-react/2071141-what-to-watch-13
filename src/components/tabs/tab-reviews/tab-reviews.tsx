@@ -5,13 +5,14 @@ import {
 } from '../../../store/films-data/films-data-selectors';
 import { RequestStatus } from '../../../const';
 import Review from '../../review/review';
+import Loader from '../../loader/loader';
 
 function TabReviews(): JSX.Element {
   const reviewsList = useAppSelector(getReviews);
   const reviewsFetchingStatus = useAppSelector(getReviewsFetchingStatus);
 
   if (reviewsFetchingStatus === RequestStatus.Pending) {
-    return <div>Loading...</div>;
+    return <Loader />;
   }
 
   if (reviewsList.length === 0) {
