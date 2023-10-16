@@ -1,8 +1,8 @@
 import { Link } from 'react-router-dom';
-import { AppRoute } from '../../const';
 import { useAppDispatch, useAppSelector } from '../../hooks';
-import { getUser } from '../../store/user-process/user-process.selectors';
 import { logoutAction } from '../../store/api-actions';
+import { getUser } from '../../store/user-process/user-process.selectors';
+import { AppRoute } from '../../const';
 
 function UserHeaderAuth(): JSX.Element {
   const dispatch = useAppDispatch();

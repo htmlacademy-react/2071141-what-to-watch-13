@@ -1,10 +1,10 @@
 import { ChangeEvent, useState } from 'react';
+import classNames from 'classnames';
 import { useAppDispatch, useAppSelector } from '../../hooks';
 import { loginAction } from '../../store/api-actions';
-import { RequestStatus } from '../../const';
 import { getLoginFetchingStatus } from '../../store/user-process/user-process.selectors';
 import { TAuthData } from '../../types/auth-data';
-import classNames from 'classnames';
+import { RequestStatus } from '../../const';
 
 const EMAIL_INVALID_MESSAGE = 'Please enter a valid email address';
 const PASSWORD_INVALID_MESSAGE =

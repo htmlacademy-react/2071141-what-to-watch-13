@@ -1,5 +1,4 @@
 import Header from '../header/header';
-import { RequestStatus } from '../../const';
 import { useAppSelector } from '../../hooks';
 import {
   getMyList,
@@ -9,6 +8,7 @@ import {
 import MyListButton from '../buttons/my-list-button/my-list-button';
 import PlayButton from '../buttons/play-button/play-button';
 import Loader from '../loader/loader';
+import { RequestStatus } from '../../const';
 
 function FilmCardPromo(): JSX.Element {
   const promoFilm = useAppSelector(getPromoFilm);

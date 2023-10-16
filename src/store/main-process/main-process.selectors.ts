@@ -1,5 +1,5 @@
-import { NameSpace } from '../../const';
 import { TAppState, TMainProcess } from '../../types/state';
+import { NameSpace } from '../../const';
 
 export const getActiveGenre = (
   state: Pick<TAppState, NameSpace.Main>

@@ -1,9 +1,10 @@
 import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { AppRoute, AuthorizationStatus } from '../../const';
+import { Helmet } from 'react-helmet-async';
 import Logo from '../../components/logo/logo';
 import Footer from '../../components/footer/footer';
 import LoginForm from '../../components/login-form/login-form';
+import { AppRoute, AuthorizationStatus } from '../../const';
 
 type TLoginProps = {
   authorizationStatus: AuthorizationStatus;
@@ -18,14 +19,19 @@ function Login({ authorizationStatus }: TLoginProps): JSX.Element {
   }, [authorizationStatus, navigate]);
 
   return (
-    <div className="user-page">
-      <header className="page-header user-page__head">
-        <Logo />
-        <h1 className="page-title user-page__title">Sign in</h1>
-      </header>
-      <LoginForm />
-      <Footer />
-    </div>
+    <>
+      <Helmet>
+        <title>What to Watch. Login</title>
+      </Helmet>
+      <div className="user-page">
+        <header className="page-header user-page__head">
+          <Logo />
+          <h1 className="page-title user-page__title">Sign in</h1>
+        </header>
+        <LoginForm />
+        <Footer />
+      </div>
+    </>
   );
 }
 

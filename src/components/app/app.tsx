@@ -1,6 +1,9 @@
 import { HelmetProvider } from 'react-helmet-async';
 import { Route, Routes } from 'react-router-dom';
-import { AppRoute, AuthorizationStatus } from '../../const';
+import HistoryRouter from '../history-route/history-route';
+import browserHistory from '../../browser-history';
+import { useAppSelector } from '../../hooks';
+import { getAuthorizationStatus } from '../../store/user-process/user-process.selectors';
 import Main from '../../pages/main/main';
 import PageNotFound from '../../pages/page-not-found/page-not-found';
 import AddReview from '../../pages/add-review/add-review';
@@ -9,12 +12,9 @@ import Login from '../../pages/login/login';
 import MyList from '../../pages/my-list/my-list';
 import Player from '../../pages/player/player';
 import PrivateRoute from '../private-route/private-route';
-import { useAppSelector } from '../../hooks';
-import { getAuthorizationStatus } from '../../store/user-process/user-process.selectors';
-import browserHistory from '../../browser-history';
-import HistoryRouter from '../history-route/history-route';
 import Loader from '../loader/loader';
-
+import { AppRoute, AuthorizationStatus } from '../../const';
+//todo валидация логина и обработка ошибок,,,not foung
 function App(): JSX.Element {
   const authorizationStatus = useAppSelector(getAuthorizationStatus);
 

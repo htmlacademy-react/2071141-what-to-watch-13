@@ -1,5 +1,4 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { NameSpace, RequestStatus } from '../../const';
 import {
   addReviewAction,
   fetchFilmAction,
@@ -10,6 +9,7 @@ import {
   fetchSimilarFilmsAction,
 } from '../api-actions';
 import { TFilmsData } from '../../types/state';
+import { NameSpace, RequestStatus } from '../../const';
 
 const initialState: TFilmsData = {
   film: null,

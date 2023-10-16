@@ -4,16 +4,11 @@ import { AppRoute } from '../../const';
 function UserHeaderNotAuth(): JSX.Element {
   return (
     <ul className="user-block">
-      <Link to={AppRoute.Login} className="user-block__item">
-        <div className="user-block__avatar">
-          <img src="img/avatar.jpg" alt="User avatar" width={63} height={63} />
-        </div>
-      </Link>
-      <li className="user-block__item">
-        <Link to={AppRoute.Login} className="user-block__link">
+      <Link to={AppRoute.Login} className="user-block__link">
+        <li className="user-block__item">
           <a className="user-block__link">Sign in</a>
-        </Link>
-      </li>
+        </li>
+      </Link>
     </ul>
   );
 }

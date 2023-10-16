@@ -1,15 +1,15 @@
-import { useNavigate, useParams } from 'react-router-dom';
-import { AppRoute, RequestStatus } from '../../const';
-import { useAppDispatch, useAppSelector } from '../../hooks';
 import { useEffect, useRef, useState } from 'react';
+import { useNavigate, useParams } from 'react-router-dom';
+import { useAppDispatch, useAppSelector } from '../../hooks';
 import { fetchFilmAction } from '../../store/api-actions';
 import {
   getFilm,
   getFilmFetchingStatus,
 } from '../../store/films-data/films-data-selectors';
 import PageNotFound from '../page-not-found/page-not-found';
-import { getVideoTimeFormat } from '../../utils/utils';
 import Loader from '../../components/loader/loader';
+import { getVideoTimeFormat } from '../../utils/utils';
+import { AppRoute, RequestStatus } from '../../const';
 
 function Player(): JSX.Element {
   const dispatch = useAppDispatch();

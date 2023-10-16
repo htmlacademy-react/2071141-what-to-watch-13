@@ -1,17 +1,17 @@
+import { useEffect } from 'react';
 import { Link, useParams } from 'react-router-dom';
-import Logo from '../../components/logo/logo';
-import UserHeaderAuth from '../../components/user-header/user-header-auth';
-import ReviewForm from '../../components/review-form/review-form';
 import { useAppDispatch, useAppSelector } from '../../hooks';
 import {
   getFilm,
   getFilmFetchingStatus,
 } from '../../store/films-data/films-data-selectors';
-import { useEffect } from 'react';
 import { fetchFilmAction } from '../../store/api-actions';
-import { AppRoute, RequestStatus } from '../../const';
+import Logo from '../../components/logo/logo';
+import UserHeaderAuth from '../../components/user-header/user-header-auth';
+import ReviewForm from '../../components/review-form/review-form';
 import PageNotFound from '../page-not-found/page-not-found';
 import Loader from '../../components/loader/loader';
+import { AppRoute, RequestStatus } from '../../const';
 
 function AddReview(): JSX.Element {
   const { id } = useParams();

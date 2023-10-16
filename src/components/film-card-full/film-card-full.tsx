@@ -1,8 +1,8 @@
+import { useAppSelector } from '../../hooks';
 import Header from '../header/header';
 import { AuthorizationStatus } from '../../const';
 import Tabs from '../tabs/tabs/tabs';
 import { TFilm } from '../../types/film';
-import { useAppSelector } from '../../hooks';
 import { getMyList } from '../../store/films-data/films-data-selectors';
 import MyListButton from '../buttons/my-list-button/my-list-button';
 import PlayButton from '../buttons/play-button/play-button';

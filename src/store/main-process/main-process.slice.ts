@@ -1,6 +1,6 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { ALL_GENRES, NameSpace } from '../../const';
 import { TFilm } from '../../types/film';
+import { ALL_GENRES, NameSpace } from '../../const';
 
 const FILMS_ON_FIRST_LOAD = 8;
 const FILMS_ON_SHOW_MORE_CLICK = 8;

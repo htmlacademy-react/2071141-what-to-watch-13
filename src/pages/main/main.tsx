@@ -1,8 +1,5 @@
 import { useEffect } from 'react';
-import Catatog from '../../components/catalog/catalog';
-import FilmCardPromo from '../../components/film-card-promo/film-card-promo';
-import FilterGenre from '../../components/filter-genre/filter-genre';
-import { ALL_GENRES, MAX_GENRES_COUNT, RequestStatus } from '../../const';
+import { Helmet } from 'react-helmet-async';
 import { useAppDispatch, useAppSelector } from '../../hooks';
 import {
   fetchFilmsAction,
@@ -14,9 +11,13 @@ import {
   getFilmsFetchingStatus,
 } from '../../store/films-data/films-data-selectors';
 import { getActiveGenre } from '../../store/main-process/main-process.selectors';
-import { Helmet } from 'react-helmet-async';
+import Catatog from '../../components/catalog/catalog';
+import FilmCardPromo from '../../components/film-card-promo/film-card-promo';
+import FilterGenre from '../../components/filter-genre/filter-genre';
 import Loader from '../../components/loader/loader';
 import Footer from '../../components/footer/footer';
+import PageNotFound from '../page-not-found/page-not-found';
+import { ALL_GENRES, MAX_GENRES_COUNT, RequestStatus } from '../../const';
 
 function Main(): JSX.Element {
   const dispatch = useAppDispatch();
@@ -54,7 +55,7 @@ function Main(): JSX.Element {
             genres={genres.slice(0, MAX_GENRES_COUNT)}
             activeGenre={activeGenre}
           />
-          <Catatog films={filmsByGenre} />
+          {films.length ? <Catatog films={filmsByGenre} /> : <PageNotFound />}
         </section>
         <Footer />
       </div>

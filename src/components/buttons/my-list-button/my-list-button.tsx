@@ -1,9 +1,9 @@
-import { TFilm } from '../../../types/film';
-import { TFilms } from '../../../types/films';
-import { useAppDispatch, useAppSelector } from '../../../hooks';
-import { AppRoute, AuthorizationStatus } from '../../../const';
 import { useEffect, useState } from 'react';
 import { getAuthorizationStatus } from '../../../store/user-process/user-process.selectors';
+import { useAppDispatch, useAppSelector } from '../../../hooks';
+import { TFilm } from '../../../types/film';
+import { TFilms } from '../../../types/films';
+import { AppRoute, AuthorizationStatus } from '../../../const';
 import {
   changeMyListAction,
   fetchMyListAction,

@@ -1,15 +1,15 @@
 import { AxiosInstance } from 'axios';
 import { TAppDispatch, TAppState } from '../types/state';
 import { createAsyncThunk } from '@reduxjs/toolkit';
-import { APIRoute, AppRoute, NameSpace } from '../const';
+import { dropToken, saveToken } from '../services/token';
+import { redirectToRoute } from './actions';
 import { TFilms } from '../types/films';
 import { TFilm } from '../types/film';
+import { TUser } from '../types/user';
 import { TMyList } from '../types/my-list';
 import { TAddReview, TReviews } from '../types/reviews';
-import { TUser } from '../types/user';
-import { dropToken, saveToken } from '../services/token';
 import { TAuthData } from '../types/auth-data';
-import { redirectToRoute } from './actions';
+import { APIRoute, AppRoute, NameSpace } from '../const';
 
 type TExtra = {
   dispatch: TAppDispatch;

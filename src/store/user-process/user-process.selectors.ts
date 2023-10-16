@@ -1,5 +1,5 @@
-import { NameSpace } from '../../const';
 import { TAppState, TUserProcess } from '../../types/state';
+import { NameSpace } from '../../const';
 
 export const getUser = (
   state: Pick<TAppState, NameSpace.User>

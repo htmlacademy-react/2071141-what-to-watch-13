@@ -1,5 +1,5 @@
-import { NameSpace } from '../../const';
 import { TAppState, TFilmsData } from '../../types/state';
+import { NameSpace } from '../../const';
 
 export const getFilms = (
   state: Pick<TAppState, NameSpace.Films>

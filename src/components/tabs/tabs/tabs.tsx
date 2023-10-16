@@ -1,10 +1,10 @@
 import { useState } from 'react';
-import { TFilm } from '../../../types/film';
-import { Tab } from '../../../const';
 import TabsNavigation from '../tabs-navigation/tabs-navigation';
 import TabDetails from '../tab-details/tab-details';
 import TabOverview from '../tab-overview/tab-overview';
 import TabReviews from '../tab-reviews/tab-reviews';
+import { TFilm } from '../../../types/film';
+import { Tab } from '../../../const';
 
 type TTabsProps = {
   film: TFilm;
