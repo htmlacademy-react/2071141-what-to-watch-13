@@ -1,4 +1,4 @@
-import { ChangeEvent, useState } from 'react';
+import { useState } from 'react';
 import classNames from 'classnames';
 import { useAppDispatch, useAppSelector } from '../../hooks';
 import { loginAction } from '../../store/api-actions';
@@ -12,7 +12,7 @@ const PASSWORD_INVALID_MESSAGE =
 
 const emailPattern =
   /^[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?$/;
-const passwordPattern = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{2,8}$/;
+const passwordPattern = /^(?=.*[a-zA-Z])(?=.*\d)(?=.{1,}$)/;
 
 function LoginForm() {
   const dispatch = useAppDispatch();
@@ -33,7 +33,7 @@ function LoginForm() {
     setFormData({ ...formData, [name]: value });
   };
 
-  const handleFormSubmit = (e: ChangeEvent<HTMLFormElement>) => {
+  const handleFormSubmit = (e: React.ChangeEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (!emailPattern.test(formData.email)) {
       setErrorMessage(EMAIL_INVALID_MESSAGE);
@@ -41,8 +41,7 @@ function LoginForm() {
     } else if (!passwordPattern.test(formData.password)) {
       setErrorMessage(PASSWORD_INVALID_MESSAGE);
       setIsValid({ email: true, password: false });
-    }
-    if (isValid.email && isValid.password) {
+    } else {
       dispatch(
         loginAction({ email: formData.email, password: formData.password })
       );
