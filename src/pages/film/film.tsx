@@ -9,7 +9,6 @@ import {
 } from '../../store/films-data/films-data-selectors';
 import {
   fetchFilmAction,
-  fetchMyListAction,
   fetchReviewsAction,
   fetchSimilarFilmsAction,
 } from '../../store/api-actions';
@@ -33,7 +32,6 @@ function Film(): JSX.Element {
       dispatch(fetchFilmAction(id));
       dispatch(fetchSimilarFilmsAction(id));
       dispatch(fetchReviewsAction(id));
-      dispatch(fetchMyListAction());
     }
   }, [id, dispatch]);
 

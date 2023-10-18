@@ -1,11 +1,5 @@
-import { useEffect } from 'react';
 import { Helmet } from 'react-helmet-async';
-import { useAppDispatch, useAppSelector } from '../../hooks';
-import {
-  fetchFilmsAction,
-  fetchMyListAction,
-  fetchPromoFilmAction,
-} from '../../store/api-actions';
+import { useAppSelector } from '../../hooks';
 import {
   getFilms,
   getFilmsFetchingStatus,
@@ -20,14 +14,6 @@ import PageNotFound from '../page-not-found/page-not-found';
 import { ALL_GENRES, MAX_GENRES_COUNT, RequestStatus } from '../../const';
 
 function Main(): JSX.Element {
-  const dispatch = useAppDispatch();
-
-  useEffect(() => {
-    dispatch(fetchFilmsAction());
-    dispatch(fetchPromoFilmAction());
-    dispatch(fetchMyListAction());
-  }, [dispatch]);
-
   const films = useAppSelector(getFilms);
   const filmsFetchingStatus = useAppSelector(getFilmsFetchingStatus);
 

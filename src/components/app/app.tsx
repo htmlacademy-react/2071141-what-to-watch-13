@@ -2,7 +2,7 @@ import { HelmetProvider } from 'react-helmet-async';
 import { Route, Routes } from 'react-router-dom';
 import HistoryRouter from '../history-route/history-route';
 import browserHistory from '../../browser-history';
-import { useAppSelector } from '../../hooks';
+import { useAppDispatch, useAppSelector } from '../../hooks';
 import { getAuthorizationStatus } from '../../store/user-process/user-process.selectors';
 import Main from '../../pages/main/main';
 import PageNotFound from '../../pages/page-not-found/page-not-found';
@@ -14,8 +14,24 @@ import Player from '../../pages/player/player';
 import PrivateRoute from '../private-route/private-route';
 import Loader from '../loader/loader';
 import { AppRoute, AuthorizationStatus } from '../../const';
-//todo валидация логина и обработка ошибок,,,not foung
+import { useEffect } from 'react';
+import {
+  checkAuthAction,
+  fetchFilmsAction,
+  fetchMyListAction,
+  fetchPromoFilmAction,
+} from '../../store/api-actions';
+//todo валидация логина и обработка ошибок,,,not found
 function App(): JSX.Element {
+  const dispatch = useAppDispatch();
+
+  useEffect(() => {
+    dispatch(checkAuthAction());
+    dispatch(fetchFilmsAction());
+    dispatch(fetchPromoFilmAction());
+    dispatch(fetchMyListAction());
+  }, [dispatch]);
+
   const authorizationStatus = useAppSelector(getAuthorizationStatus);
 
   if (authorizationStatus === AuthorizationStatus.Unknown) {
