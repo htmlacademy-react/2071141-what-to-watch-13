@@ -21,7 +21,7 @@ import {
   fetchMyListAction,
   fetchPromoFilmAction,
 } from '../../store/api-actions';
-//todo валидация логина и обработка ошибок,,,not found
+
 function App(): JSX.Element {
   const dispatch = useAppDispatch();
 
