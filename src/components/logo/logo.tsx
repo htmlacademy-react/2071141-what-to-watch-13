@@ -6,14 +6,18 @@ import {
   resetGenreAction,
 } from '../../store/main-process/main-process.slice';
 
-function Logo() {
+type TLogoProps = {
+  logoClass: string;
+};
+
+function Logo({ logoClass }: TLogoProps): JSX.Element {
   const dispatch = useAppDispatch();
 
   return (
     <div className="logo">
       <Link
         to={AppRoute.Root}
-        className="logo__link"
+        className={logoClass}
         onClick={() => {
           dispatch(resetFilmsAction());
           dispatch(resetGenreAction());

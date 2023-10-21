@@ -6,6 +6,9 @@ export const MIN_COMMENT_LENGTH = 50;
 
 export const MAX_COMMENT_LENGTH = 400;
 
+export const LOGO_HEADER = 'logo__link';
+export const LOGO_FOOTER = 'logo__link logo__link--light';
+
 export enum NameSpace {
   Films = 'FILMS',
   Main = 'MAIN',

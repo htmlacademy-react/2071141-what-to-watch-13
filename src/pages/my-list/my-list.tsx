@@ -10,7 +10,7 @@ import FilmCardsList from '../../components/film-cards-list/film-cards-list';
 import UserHeaderAuth from '../../components/user-header/user-header-auth';
 import Footer from '../../components/footer/footer';
 import Logo from '../../components/logo/logo';
-import { RequestStatus } from '../../const';
+import { LOGO_HEADER, RequestStatus } from '../../const';
 import Loader from '../../components/loader/loader';
 
 function MyList(): JSX.Element {
@@ -34,7 +34,7 @@ function MyList(): JSX.Element {
       </Helmet>
       <div className="user-page">
         <header className="page-header user-page__head">
-          <Logo />
+          <Logo logoClass={LOGO_HEADER} />
           <h1 className="page-title user-page__title">
             My list{' '}
             <span className="user-page__film-count">

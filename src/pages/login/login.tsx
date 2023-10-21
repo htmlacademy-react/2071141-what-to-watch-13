@@ -4,7 +4,7 @@ import { Helmet } from 'react-helmet-async';
 import Logo from '../../components/logo/logo';
 import Footer from '../../components/footer/footer';
 import LoginForm from '../../components/login-form/login-form';
-import { AppRoute, AuthorizationStatus } from '../../const';
+import { AppRoute, AuthorizationStatus, LOGO_HEADER } from '../../const';
 
 type TLoginProps = {
   authorizationStatus: AuthorizationStatus;
@@ -25,7 +25,7 @@ function Login({ authorizationStatus }: TLoginProps): JSX.Element {
       </Helmet>
       <div className="user-page">
         <header className="page-header user-page__head">
-          <Logo />
+          <Logo logoClass={LOGO_HEADER} />
           <h1 className="page-title user-page__title">Sign in</h1>
         </header>
         <LoginForm />

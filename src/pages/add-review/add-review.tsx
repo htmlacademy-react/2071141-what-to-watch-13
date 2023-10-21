@@ -11,7 +11,7 @@ import UserHeaderAuth from '../../components/user-header/user-header-auth';
 import ReviewForm from '../../components/review-form/review-form';
 import PageNotFound from '../page-not-found/page-not-found';
 import Loader from '../../components/loader/loader';
-import { AppRoute, RequestStatus } from '../../const';
+import { AppRoute, LOGO_HEADER, RequestStatus } from '../../const';
 import { Helmet } from 'react-helmet-async';
 
 function AddReview(): JSX.Element {
@@ -49,7 +49,7 @@ function AddReview(): JSX.Element {
         </div>
         <h1 className="visually-hidden">WTW</h1>
         <header className="page-header">
-          <Logo />
+          <Logo logoClass={LOGO_HEADER} />
           <nav className="breadcrumbs">
             <ul className="breadcrumbs__list">
               <li className="breadcrumbs__item">

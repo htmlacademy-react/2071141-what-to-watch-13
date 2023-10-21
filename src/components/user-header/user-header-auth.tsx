@@ -24,7 +24,7 @@ function UserHeaderAuth(): JSX.Element {
             dispatch(logoutAction());
           }}
         >
-          <a className="user-block__link">Sign out</a>
+          Sign out
         </Link>
       </li>
     </ul>

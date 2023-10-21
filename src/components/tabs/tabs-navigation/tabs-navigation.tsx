@@ -1,4 +1,5 @@
 import classNames from 'classnames';
+import { NavLink } from 'react-router-dom';
 
 type TTabsNavigationProps = {
   tab: string;
@@ -22,9 +23,9 @@ function TabsNavigation({
         'film-nav__item--active': activeTab === tab,
       })}
     >
-      <a href="#" className="film-nav__link" onClick={handleTabClick}>
+      <NavLink to="#" className="film-nav__link" onClick={handleTabClick}>
         {tab}
-      </a>
+      </NavLink>
     </li>
   );
 }

@@ -26,9 +26,7 @@ function FilmCardPromo(): JSX.Element {
         <img src={promoFilm.backgroundImage} alt={promoFilm.name} />
       </div>
       <h1 className="visually-hidden">WTW</h1>
-
       <Header />
-
       <div className="film-card__wrap">
         <div className="film-card__info">
           <div className="film-card__poster">
