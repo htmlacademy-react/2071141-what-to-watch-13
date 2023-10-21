@@ -20,10 +20,6 @@ export const getFilmFetchingStatus = (
 export const getSimilarFilms = (
   state: Pick<TAppState, NameSpace.Films>
 ): TFilmsData['similarFilms'] => state[NameSpace.Films].similarFilms;
-export const getSimilarFilmsFetchingStatus = (
-  state: Pick<TAppState, NameSpace.Films>
-): TFilmsData['similarFilmsFetchingStatus'] =>
-  state[NameSpace.Films].similarFilmsFetchingStatus;
 
 export const getPromoFilm = (
   state: Pick<TAppState, NameSpace.Films>

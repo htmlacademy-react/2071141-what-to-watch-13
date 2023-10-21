@@ -18,6 +18,8 @@ function LoginForm() {
   const dispatch = useAppDispatch();
   const loginFetchingStatus = useAppSelector(getLoginFetchingStatus);
 
+  const isUIBlocked = loginFetchingStatus === RequestStatus.Pending;
+
   const [formData, setFormData] = useState<TAuthData>({
     email: '',
     password: '',
@@ -74,6 +76,7 @@ function LoginForm() {
               type="email"
               placeholder="Email address"
               name="email"
+              disabled={isUIBlocked}
             />
             <label
               className="sign-in__label visually-hidden"
@@ -94,6 +97,7 @@ function LoginForm() {
               type="password"
               placeholder="Password"
               name="password"
+              disabled={isUIBlocked}
             />
             <label
               className="sign-in__label visually-hidden"
@@ -104,10 +108,8 @@ function LoginForm() {
           </div>
         </div>
         <div className="sign-in__submit">
-          <button className="sign-in__btn" type="submit">
-            {loginFetchingStatus === RequestStatus.Pending
-              ? 'Siggning in...'
-              : 'Sign in'}
+          <button className="sign-in__btn" type="submit" disabled={isUIBlocked}>
+            {isUIBlocked ? 'Signing in...' : 'Sign in'}
           </button>
         </div>
       </form>

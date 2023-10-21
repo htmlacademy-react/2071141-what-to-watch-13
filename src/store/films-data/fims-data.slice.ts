@@ -53,9 +53,6 @@ export const filmsData = createSlice({
       .addCase(fetchFilmAction.rejected, (state) => {
         state.filmFetchingStatus = RequestStatus.Rejected;
       })
-      .addCase(fetchSimilarFilmsAction.pending, (state) => {
-        state.similarFilmsFetchingStatus = RequestStatus.Pending;
-      })
       .addCase(fetchSimilarFilmsAction.fulfilled, (state, action) => {
         state.similarFilmsFetchingStatus = RequestStatus.Success;
         state.similarFilms = action.payload;

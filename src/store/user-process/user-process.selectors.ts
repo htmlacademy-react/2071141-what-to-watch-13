@@ -12,4 +12,5 @@ export const getAuthorizationStatus = (
 
 export const getLoginFetchingStatus = (
   state: Pick<TAppState, NameSpace.User>
-): TUserProcess['fetchingStatus'] => state[NameSpace.User].fetchingStatus;
+): TUserProcess['loginFetchingStatus'] =>
+  state[NameSpace.User].loginFetchingStatus;

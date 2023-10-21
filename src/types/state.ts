@@ -32,5 +32,5 @@ export type TMainProcess = {
 export type TUserProcess = {
   user: TUser | null;
   authorizationStatus: AuthorizationStatus;
-  fetchingStatus: RequestStatus;
+  loginFetchingStatus: RequestStatus;
 };

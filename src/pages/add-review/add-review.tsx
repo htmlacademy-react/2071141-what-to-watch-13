@@ -12,6 +12,7 @@ import ReviewForm from '../../components/review-form/review-form';
 import PageNotFound from '../page-not-found/page-not-found';
 import Loader from '../../components/loader/loader';
 import { AppRoute, RequestStatus } from '../../const';
+import { Helmet } from 'react-helmet-async';
 
 function AddReview(): JSX.Element {
   const { id } = useParams();
@@ -39,6 +40,9 @@ function AddReview(): JSX.Element {
       className="film-card film-card--full"
       style={{ backgroundColor: film.backgroundColor }}
     >
+      <Helmet>
+        <title>WTW. Add review</title>
+      </Helmet>
       <div className="film-card__header">
         <div className="film-card__bg">
           <img src={film.backgroundImage} alt="The Grand Budapest Hotel" />
@@ -57,7 +61,9 @@ function AddReview(): JSX.Element {
                 </Link>
               </li>
               <li className="breadcrumbs__item">
-                <a className="breadcrumbs__link">Add review</a>
+                <Link to="#" className="breadcrumbs__link">
+                  Add review
+                </Link>
               </li>
             </ul>
           </nav>

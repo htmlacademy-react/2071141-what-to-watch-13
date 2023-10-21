@@ -27,7 +27,6 @@ function TabReviews(): JSX.Element {
           .map((review) => (
             <Review key={review.id} review={review} />
           ))}
-        ;
       </div>
       <div className="film-card__reviews-col">
         {reviewsList

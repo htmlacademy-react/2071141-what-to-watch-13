@@ -72,6 +72,7 @@ function ReviewForm({ id, backgroundColor }: TReviewFormProps): JSX.Element {
                     value={score}
                     checked={rating === score}
                     onChange={handleInputChange}
+                    disabled={isUIBlocked}
                   />
                   <label
                     className="rating__label"
@@ -95,6 +96,7 @@ function ReviewForm({ id, backgroundColor }: TReviewFormProps): JSX.Element {
             maxLength={MAX_COMMENT_LENGTH}
             value={comment}
             onChange={handleTextAreaChange}
+            disabled={isUIBlocked}
           />
           <div
             className="add-review__submit"
