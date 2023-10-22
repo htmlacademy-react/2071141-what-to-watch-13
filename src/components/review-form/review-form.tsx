@@ -1,16 +1,11 @@
 import { ChangeEvent, Fragment, useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { toast } from 'react-toastify';
 import { useAppDispatch, useAppSelector } from '../../hooks';
 import { getAddReviewFetchingStatus } from '../../store/films-data/films-data-selectors';
 import { addReviewAction } from '../../store/api-actions';
 import { TFilm } from '../../types/film';
-import {
-  AppRoute,
-  MAX_COMMENT_LENGTH,
-  MIN_COMMENT_LENGTH,
-  RequestStatus,
-  ratingMap,
-} from '../../const';
+import { AppRoute, CommentLength, RequestStatus, ratingMap } from '../../const';
 
 type TReviewFormProps = {
   id: TFilm['id'];
@@ -26,8 +21,8 @@ function ReviewForm({ id, backgroundColor }: TReviewFormProps): JSX.Element {
   const [rating, setRating] = useState('');
 
   const isValid =
-    comment.length >= MIN_COMMENT_LENGTH &&
-    comment.length <= MAX_COMMENT_LENGTH &&
+    comment.length >= CommentLength.Min &&
+    comment.length <= CommentLength.Max &&
     rating !== '';
   const isUIBlocked = addReviewFetchingStatus === RequestStatus.Pending;
 
@@ -46,6 +41,8 @@ function ReviewForm({ id, backgroundColor }: TReviewFormProps): JSX.Element {
     dispatch(addReviewAction({ reviewData, id }));
     if (addReviewFetchingStatus === RequestStatus.Success) {
       navigate(`${AppRoute.Film}/${id}`);
+    } else {
+      toast.error('Something went wrong, please try again');
     }
   };
 
@@ -54,7 +51,7 @@ function ReviewForm({ id, backgroundColor }: TReviewFormProps): JSX.Element {
       setComment('');
       setRating('');
     }
-  }, [addReviewFetchingStatus, id]);
+  }, [addReviewFetchingStatus]);
 
   return (
     <div className="add-review">
@@ -93,8 +90,8 @@ function ReviewForm({ id, backgroundColor }: TReviewFormProps): JSX.Element {
             name="review-text"
             id="review-text"
             placeholder="Review text"
-            minLength={MIN_COMMENT_LENGTH}
-            maxLength={MAX_COMMENT_LENGTH}
+            minLength={CommentLength.Min}
+            maxLength={CommentLength.Max}
             value={comment}
             onChange={handleTextAreaChange}
             disabled={isUIBlocked}

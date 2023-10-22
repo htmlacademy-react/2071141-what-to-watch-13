@@ -10,8 +10,10 @@ function PageNotFound(): JSX.Element {
       <div className="sign-in user-page__content">
         <form action="#" className="sign-in__form">
           <div className="sign-in__message">
-            <p>Error 404 page not found</p>
-            <Link to={AppRoute.Root}>Back to the homepage</Link>
+            <h2>Error 404 page not found</h2>
+            <Link to={AppRoute.Root} className="sign-in__link">
+              Back to the homepage
+            </Link>
           </div>
         </form>
       </div>

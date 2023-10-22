@@ -41,7 +41,7 @@ function AddReview(): JSX.Element {
       style={{ backgroundColor: film.backgroundColor }}
     >
       <Helmet>
-        <title>WTW. Add review</title>
+        <title>What to Watch. Add review</title>
       </Helmet>
       <div className="film-card__header">
         <div className="film-card__bg">

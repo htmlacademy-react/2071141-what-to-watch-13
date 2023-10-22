@@ -2,9 +2,15 @@ export const MAX_GENRES_COUNT = 9;
 
 export const ALL_GENRES = 'All genres';
 
-export const MIN_COMMENT_LENGTH = 50;
+export enum CommentLength {
+  Min = 50,
+  Max = 400,
+}
 
-export const MAX_COMMENT_LENGTH = 400;
+export enum SimilarFilmsCount {
+  Min = 0,
+  Max = 4,
+}
 
 export const LOGO_HEADER = 'logo__link';
 export const LOGO_FOOTER = 'logo__link logo__link--light';

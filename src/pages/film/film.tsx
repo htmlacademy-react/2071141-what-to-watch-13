@@ -16,7 +16,7 @@ import FilmCardFull from '../../components/film-card-full/film-card-full';
 import FilmCardsList from '../../components/film-cards-list/film-cards-list';
 import Footer from '../../components/footer/footer';
 import Loader from '../../components/loader/loader';
-import { RequestStatus } from '../../const';
+import { RequestStatus, SimilarFilmsCount } from '../../const';
 
 function Film(): JSX.Element {
   const { id } = useParams();
@@ -49,7 +49,12 @@ function Film(): JSX.Element {
         <section className="catalog catalog--like-this">
           <h2 className="catalog__title">More like this</h2>
           {similarFilms.length ? (
-            <FilmCardsList films={similarFilms.slice(0, 4)} />
+            <FilmCardsList
+              films={similarFilms.slice(
+                SimilarFilmsCount.Min,
+                SimilarFilmsCount.Max
+              )}
+            />
           ) : (
             <h2>There are no smilar films in database yet</h2>
           )}
