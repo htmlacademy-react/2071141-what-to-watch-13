@@ -10,7 +10,6 @@ import FilmCardPromo from '../../components/film-card-promo/film-card-promo';
 import FilterGenre from '../../components/filter-genre/filter-genre';
 import Loader from '../../components/loader/loader';
 import Footer from '../../components/footer/footer';
-import PageNotFound from '../page-not-found/page-not-found';
 import { ALL_GENRES, MAX_GENRES_COUNT, RequestStatus } from '../../const';
 
 function Main(): JSX.Element {
@@ -41,7 +40,11 @@ function Main(): JSX.Element {
             genres={genres.slice(0, MAX_GENRES_COUNT)}
             activeGenre={activeGenre}
           />
-          {films.length ? <Catatog films={filmsByGenre} /> : <PageNotFound />}
+          {films.length ? (
+            <Catatog films={filmsByGenre} />
+          ) : (
+            <h2>There are no films in database yet</h2>
+          )}
         </section>
         <Footer />
       </div>

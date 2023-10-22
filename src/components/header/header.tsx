@@ -1,4 +1,4 @@
-import { AuthorizationStatus } from '../../const';
+import { AuthorizationStatus, LOGO_HEADER } from '../../const';
 import { useAppSelector } from '../../hooks';
 import { getAuthorizationStatus } from '../../store/user-process/user-process.selectors';
 import Logo from '../logo/logo';
@@ -10,7 +10,7 @@ function Header() {
 
   return (
     <header className="page-header film-card__head">
-      <Logo />
+      <Logo logoClass={LOGO_HEADER} />
 
       {authorizationStatus === AuthorizationStatus.Auth ? (
         <UserHeaderAuth />

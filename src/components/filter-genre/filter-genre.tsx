@@ -5,6 +5,7 @@ import {
   resetFilmsAction,
   setGenreAction,
 } from '../../store/main-process/main-process.slice';
+import { Link } from 'react-router-dom';
 
 type TFilterGenreProps = {
   genres: TFilms['genre'][];
@@ -24,8 +25,8 @@ function FilterGenre({ genres, activeGenre }: TFilterGenreProps): JSX.Element {
               'catalog__genres-item--active': activeGenre === genre,
             })}
           >
-            <a
-              href="#"
+            <Link
+              to="#"
               className="catalog__genres-link"
               onClick={() => {
                 dispatch(resetFilmsAction());
@@ -33,7 +34,7 @@ function FilterGenre({ genres, activeGenre }: TFilterGenreProps): JSX.Element {
               }}
             >
               {genre}
-            </a>
+            </Link>
           </li>
         ))}
       </ul>

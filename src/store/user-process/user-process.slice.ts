@@ -6,7 +6,7 @@ import { AuthorizationStatus, NameSpace, RequestStatus } from '../../const';
 const initialState: TUserProcess = {
   user: null,
   authorizationStatus: AuthorizationStatus.Unknown,
-  fetchingStatus: RequestStatus.Idle,
+  loginFetchingStatus: RequestStatus.Idle,
 };
 
 export const userProcess = createSlice({
@@ -26,13 +26,16 @@ export const userProcess = createSlice({
         state.authorizationStatus = AuthorizationStatus.NoAuth;
         state.user = null;
       })
+      .addCase(loginAction.pending, (state) => {
+        state.loginFetchingStatus = RequestStatus.Pending;
+      })
       .addCase(loginAction.fulfilled, (state, action) => {
-        state.fetchingStatus = RequestStatus.Success;
+        state.loginFetchingStatus = RequestStatus.Success;
         state.authorizationStatus = AuthorizationStatus.Auth;
         state.user = action.payload;
       })
       .addCase(loginAction.rejected, (state) => {
-        state.fetchingStatus = RequestStatus.Rejected;
+        state.loginFetchingStatus = RequestStatus.Rejected;
       })
       .addCase(logoutAction.fulfilled, (state) => {
         state.authorizationStatus = AuthorizationStatus.NoAuth;

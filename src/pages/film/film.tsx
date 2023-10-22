@@ -14,10 +14,9 @@ import {
 } from '../../store/api-actions';
 import FilmCardFull from '../../components/film-card-full/film-card-full';
 import FilmCardsList from '../../components/film-cards-list/film-cards-list';
-import PageNotFound from '../page-not-found/page-not-found';
 import Footer from '../../components/footer/footer';
 import Loader from '../../components/loader/loader';
-import { RequestStatus } from '../../const';
+import { RequestStatus, SimilarFilmsCount } from '../../const';
 
 function Film(): JSX.Element {
   const { id } = useParams();
@@ -25,6 +24,7 @@ function Film(): JSX.Element {
   const dispatch = useAppDispatch();
 
   const film = useAppSelector(getFilm);
+  const similarFilms = useAppSelector(getSimilarFilms);
   const filmFetchingStatus = useAppSelector(getFilmFetchingStatus);
 
   useEffect(() => {
@@ -34,8 +34,6 @@ function Film(): JSX.Element {
       dispatch(fetchReviewsAction(id));
     }
   }, [id, dispatch]);
-
-  const similarFilms = useAppSelector(getSimilarFilms);
 
   if (filmFetchingStatus === RequestStatus.Pending) {
     return <Loader />;
@@ -50,13 +48,24 @@ function Film(): JSX.Element {
       <div className="page-content">
         <section className="catalog catalog--like-this">
           <h2 className="catalog__title">More like this</h2>
-          <FilmCardsList films={similarFilms.slice(0, 4)} />
+          {similarFilms.length ? (
+            <FilmCardsList
+              films={similarFilms.slice(
+                SimilarFilmsCount.Min,
+                SimilarFilmsCount.Max
+              )}
+            />
+          ) : (
+            <h2>There are no smilar films in database yet</h2>
+          )}
         </section>
         <Footer />
       </div>
     </>
   ) : (
-    <PageNotFound />
+    <div className="page-content">
+      <h2>Sorry, film not found</h2>
+    </div>
   );
 }
 

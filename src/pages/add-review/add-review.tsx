@@ -11,7 +11,8 @@ import UserHeaderAuth from '../../components/user-header/user-header-auth';
 import ReviewForm from '../../components/review-form/review-form';
 import PageNotFound from '../page-not-found/page-not-found';
 import Loader from '../../components/loader/loader';
-import { AppRoute, RequestStatus } from '../../const';
+import { AppRoute, LOGO_HEADER, RequestStatus } from '../../const';
+import { Helmet } from 'react-helmet-async';
 
 function AddReview(): JSX.Element {
   const { id } = useParams();
@@ -39,13 +40,16 @@ function AddReview(): JSX.Element {
       className="film-card film-card--full"
       style={{ backgroundColor: film.backgroundColor }}
     >
+      <Helmet>
+        <title>What to Watch. Add review</title>
+      </Helmet>
       <div className="film-card__header">
         <div className="film-card__bg">
           <img src={film.backgroundImage} alt="The Grand Budapest Hotel" />
         </div>
         <h1 className="visually-hidden">WTW</h1>
         <header className="page-header">
-          <Logo />
+          <Logo logoClass={LOGO_HEADER} />
           <nav className="breadcrumbs">
             <ul className="breadcrumbs__list">
               <li className="breadcrumbs__item">
@@ -57,7 +61,9 @@ function AddReview(): JSX.Element {
                 </Link>
               </li>
               <li className="breadcrumbs__item">
-                <a className="breadcrumbs__link">Add review</a>
+                <Link to="#" className="breadcrumbs__link">
+                  Add review
+                </Link>
               </li>
             </ul>
           </nav>
