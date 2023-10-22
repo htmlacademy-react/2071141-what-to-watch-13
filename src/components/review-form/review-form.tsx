@@ -43,9 +43,10 @@ function ReviewForm({ id, backgroundColor }: TReviewFormProps): JSX.Element {
       rating: Number(rating),
       comment: comment,
     };
-
     dispatch(addReviewAction({ reviewData, id }));
-    navigate(`${AppRoute.Film}/${id}`);
+    if (addReviewFetchingStatus === RequestStatus.Success) {
+      navigate(`${AppRoute.Film}/${id}`);
+    }
   };
 
   useEffect(() => {
