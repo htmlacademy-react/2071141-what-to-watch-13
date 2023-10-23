@@ -36,50 +36,56 @@ function AddReview(): JSX.Element {
   }
 
   return (
-    <section
-      className="film-card film-card--full"
-      style={{ backgroundColor: film.backgroundColor }}
-    >
+    <>
       <Helmet>
         <title>What to Watch. Add review</title>
       </Helmet>
-      <div className="film-card__header">
-        <div className="film-card__bg">
-          <img src={film.backgroundImage} alt="The Grand Budapest Hotel" />
-        </div>
-        <h1 className="visually-hidden">WTW</h1>
-        <header className="page-header">
-          <Logo logoClass={LOGO_HEADER} />
-          <nav className="breadcrumbs">
-            <ul className="breadcrumbs__list">
-              <li className="breadcrumbs__item">
-                <Link
-                  to={`${AppRoute.Film}/${id}`}
-                  className="breadcrumbs__link"
-                >
-                  {film.name}
-                </Link>
-              </li>
-              <li className="breadcrumbs__item">
-                <Link to="#" className="breadcrumbs__link">
-                  Add review
-                </Link>
-              </li>
-            </ul>
-          </nav>
-          <UserHeaderAuth />
-        </header>
-        <div className="film-card__poster film-card__poster--small">
-          <img
-            src={film.posterImage}
-            alt={film.name}
-            width={218}
-            height={327}
-          />
-        </div>
-      </div>
-      <ReviewForm id={film.id} backgroundColor={film.backgroundColor} />
-    </section>
+      {film ? (
+        <section
+          className="film-card film-card--full"
+          style={{ backgroundColor: film.backgroundColor }}
+        >
+          <div className="film-card__header">
+            <div className="film-card__bg">
+              <img src={film.backgroundImage} alt="The Grand Budapest Hotel" />
+            </div>
+            <h1 className="visually-hidden">WTW</h1>
+            <header className="page-header">
+              <Logo logoClass={LOGO_HEADER} />
+              <nav className="breadcrumbs">
+                <ul className="breadcrumbs__list">
+                  <li className="breadcrumbs__item">
+                    <Link
+                      to={`${AppRoute.Film}/${id}`}
+                      className="breadcrumbs__link"
+                    >
+                      {film.name}
+                    </Link>
+                  </li>
+                  <li className="breadcrumbs__item">
+                    <Link to="#" className="breadcrumbs__link">
+                      Add review
+                    </Link>
+                  </li>
+                </ul>
+              </nav>
+              <UserHeaderAuth />
+            </header>
+            <div className="film-card__poster film-card__poster--small">
+              <img
+                src={film.posterImage}
+                alt={film.name}
+                width={218}
+                height={327}
+              />
+            </div>
+          </div>
+          <ReviewForm id={film.id} backgroundColor={film.backgroundColor} />
+        </section>
+      ) : (
+        ''
+      )}
+    </>
   );
 }
 

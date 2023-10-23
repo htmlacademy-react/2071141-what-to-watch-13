@@ -30,7 +30,11 @@ const initialState: TFilmsData = {
 export const filmsData = createSlice({
   name: NameSpace.Films,
   initialState,
-  reducers: {},
+  reducers: {
+    clearAddReviewFetchingStatus: (state) => {
+      state.addReviewFetchingStatus = RequestStatus.Idle;
+    },
+  },
   extraReducers(builder) {
     builder
       .addCase(fetchFilmsAction.pending, (state) => {
@@ -93,3 +97,5 @@ export const filmsData = createSlice({
       });
   },
 });
+
+export const { clearAddReviewFetchingStatus } = filmsData.actions;

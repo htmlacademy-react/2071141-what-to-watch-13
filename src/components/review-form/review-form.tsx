@@ -6,6 +6,7 @@ import { getAddReviewFetchingStatus } from '../../store/films-data/films-data-se
 import { addReviewAction } from '../../store/api-actions';
 import { TFilm } from '../../types/film';
 import { AppRoute, CommentLength, RequestStatus, ratingMap } from '../../const';
+import { clearAddReviewFetchingStatus } from '../../store/films-data/fims-data.slice';
 
 type TReviewFormProps = {
   id: TFilm['id'];
@@ -39,19 +40,19 @@ function ReviewForm({ id, backgroundColor }: TReviewFormProps): JSX.Element {
       comment: comment,
     };
     dispatch(addReviewAction({ reviewData, id }));
-    if (addReviewFetchingStatus === RequestStatus.Success) {
-      navigate(`${AppRoute.Film}/${id}`);
-    } else {
-      toast.error('Something went wrong, please try again');
-    }
   };
 
   useEffect(() => {
     if (addReviewFetchingStatus === RequestStatus.Success) {
       setComment('');
       setRating('');
+      navigate(`${AppRoute.Film}/${id}`);
     }
-  }, [addReviewFetchingStatus]);
+    if (addReviewFetchingStatus === RequestStatus.Rejected) {
+      toast.error('Something went wrong, please try again');
+    }
+    dispatch(clearAddReviewFetchingStatus());
+  }, [addReviewFetchingStatus, dispatch, id, navigate]);
 
   return (
     <div className="add-review">
